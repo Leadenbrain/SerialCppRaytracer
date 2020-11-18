@@ -63,7 +63,7 @@ bool xy_rectangle<T>::is_hit(const ray<T>& r,
   return true;
 }
 
-// Rectangly on the xz plane
+// Rectangle on the xz plane
 template <typename T>
 class xz_rectangle : public hit<T> {
  public:
@@ -111,7 +111,7 @@ bool xz_rectangle<T>::is_hit(const ray<T>& r,
   rec.u = (x - x0_) / (x1_ - x0_);
   rec.v = (z - z0_) / (z1_ - z0_);
   rec.t = t;
-  vec3<T> n_out = vec3<T>(0, 0, 1);
+  vec3<T> n_out = vec3<T>(0, 1, 0);
   rec.set_face(r, n_out);
   rec.mat = mat;
   rec.p = r.at(t);
@@ -167,7 +167,7 @@ bool yz_rectangle<T>::is_hit(const ray<T>& r,
   rec.u = (y - y0_) / (y1_ - y0_);
   rec.v = (z - z0_) / (z1_ - z0_);
   rec.t = t;
-  vec3<T> n_out = vec3<T>(0, 0, 1);
+  vec3<T> n_out = vec3<T>(1, 0, 0);
   rec.set_face(r, n_out);
   rec.mat = mat;
   rec.p = r.at(t);
