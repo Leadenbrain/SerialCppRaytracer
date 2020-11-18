@@ -41,8 +41,8 @@ int main(void) {
     std::cerr << "Time to build scene: " << t_end << " seconds.\n";
 
   // Camera
-  point3<datatype> from(2.78, 2.78, -8.00);
-  point3<datatype> to(2.78, 2.78, 1);
+  point3<datatype> from(278, 278, -800);
+  point3<datatype> to(278, 278, 1);
   vec3<datatype> vup(0, 1, 0);
   // datatype focus = (from - to).norm();
   const datatype vof{40};
