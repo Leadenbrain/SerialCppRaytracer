@@ -1,8 +1,8 @@
 // The idea here is that we can just store objects we want to hit in a list
 // This allows our abstraction of objects that can be hit become useful
 // ->Just store everything we can hit in a list
-#ifndef INCLUDED_HIT_LIST_HPP
-#define INCLUDED_HIT_LIST_HPP
+#ifndef INCLUDE_OBJECTS_HIT_LIST_HPP_
+#define INCLUDE_OBJECTS_HIT_LIST_HPP_
 
 // We want shared pointers so we can share data like materials
 #include <memory>
@@ -29,10 +29,7 @@ class hit_list : public hit<T> {
   std::vector<std::shared_ptr<hit<T>>> objects() const { return obj_list; }
 
   // Overriding our base function
-  virtual bool is_hit(const ray<T>&,
-                      const T&,
-                      const T&,
-                      hit_rec<T>&) const override;
+  bool is_hit(const ray<T>&, const T&, const T&, hit_rec<T>&) const override;
   // Overriding our base function
   // -If obj_list is empty returns false
   // -
@@ -79,4 +76,4 @@ bool hit_list<T>::is_hit(const ray<T>& r,
   return hit_;
 }
 
-#endif
+#endif  // INCLUDE_OBJECTS_HIT_LIST_HPP_

@@ -1,11 +1,12 @@
 // Just store all the random crap I'm too lazy to organize
-#ifndef _INCLUDED_UTILITIES_HPP
-#define _INCLUDED_UTILITIES_HPP
+#ifndef INCLUDE_UTILITIES_HPP_
+#define INCLUDE_UTILITIES_HPP_
 
 #include <cmath>
 #include <cstdlib>
 #include <limits>
 #include <memory>
+#include <vector>
 
 // Define our own pi if it isn't for some reason
 #ifndef M_PI
@@ -64,4 +65,19 @@ inline int random_int(int min, int max) {
   return static_cast<int>(random_double(min, max + 1));
 }
 
-#endif
+template <typename T>
+inline std::vector<std::string> split(const std::string& s, char delim) {
+  std::vector<std::string> result;
+  std::stringstream ss(s);
+  std::string option;
+  int i = 0;
+
+  while (getline(ss, option, delim)) {
+    result.push_back(option);
+    i++;
+  }
+
+  return result;
+}
+
+#endif  // INCLUDE_UTILITIES_HPP_

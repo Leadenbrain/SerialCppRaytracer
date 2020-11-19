@@ -1,5 +1,5 @@
-#ifndef INCLUDED_BVH_HPP
-#define INCLUDED_BVH_HPP
+#ifndef INCLUDE_OBJECTS_BVH_HPP_
+#define INCLUDE_OBJECTS_BVH_HPP_
 
 #include <algorithm>
 #include "bounding_box.hpp"
@@ -116,4 +116,4 @@ bvh_node<T>::bvh_node(const std::vector<std::shared_ptr<hit<T>>>& src,
   box = surround_box(bL, bR);
 }
 
-#endif
+#endif  // INCLUDE_OBJECTS_BVH_HPP_

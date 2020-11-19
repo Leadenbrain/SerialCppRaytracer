@@ -1,7 +1,7 @@
 // We want to abstract the idea of an object that can be hit
 // This is what we will use as a base class for all our other objects to render
-#ifndef INCLUDED_HIT_HPP
-#define INCLUDED_HIT_HPP
+#ifndef INCLUDE_OBJECTS_HIT_HPP_
+#define INCLUDE_OBJECTS_HIT_HPP_
 
 #include "bounding_box.hpp"
 #include "render/ray.hpp"
@@ -37,4 +37,4 @@ class hit {
   virtual bool bound_box(const T&, const T&, BB<T>& out) const = 0;
 };
 
-#endif
+#endif  // INCLUDE_OBJECTS_HIT_HPP_

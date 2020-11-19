@@ -3,8 +3,8 @@
 // I have been coding for like three days straight
 // ->Commenting is likely going to go to trash soon
 // FIXME: Comments
-#ifndef INCLUDED_MATERIAL_LIGHT_HPP
-#define INCLUDED_MATERIAL_LIGHT_HPP
+#ifndef INCLUDE_MATERIALS_LIGHT_HPP_
+#define INCLUDE_MATERIALS_LIGHT_HPP_
 
 #include "material.hpp"
 #include "textures/solid.hpp"
@@ -32,4 +32,4 @@ class diffuse_light : public material<T> {
   std::shared_ptr<uvTex<T>> c_;
 };
 
-#endif
+#endif  // INCLUDE_MATERIALS_LIGHT_HPP_

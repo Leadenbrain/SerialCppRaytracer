@@ -1,6 +1,6 @@
 // A moving_sphere we can render
-#ifndef INCLUDED_MOVING_SPHERE_HPP
-#define INCLUDED_MOVING_SPHERE_HPP
+#ifndef INCLUDE_OBJECTS_MOVING_SPHERE_HPP_
+#define INCLUDE_OBJECTS_MOVING_SPHERE_HPP_
 
 #include "bounding_box.hpp"
 #include "hit.hpp"
@@ -26,10 +26,7 @@ class moving_sphere : public hit<T> {
   point3<T> center(const T&) const;
 
   // We want to override the base function
-  virtual bool is_hit(const ray<T>&,
-                      const T&,
-                      const T&,
-                      hit_rec<T>&) const override;
+  bool is_hit(const ray<T>&, const T&, const T&, hit_rec<T>&) const override;
 
   bool bound_box(const T& t0, const T& t1, BB<T>& out) const override {
     BB<T> b0(center(t0) - vec3<T>(r_, r_, r_),
@@ -91,4 +88,4 @@ bool moving_sphere<T>::is_hit(const ray<T>& r,
   return true;
 }
 
-#endif
+#endif  // INCLUDE_OBJECTS_MOVING_SPHERE_HPP_

@@ -1,7 +1,7 @@
 // A metal subclass of material
 // This object will reflect light (like a mirror)
-#ifndef _INCLUDED_METAL_HPP
-#define _INCLUDED_METAL_HPP
+#ifndef INCLUDE_MATERIALS_METAL_HPP_
+#define INCLUDE_MATERIALS_METAL_HPP_
 
 #include "material.hpp"
 
@@ -29,4 +29,4 @@ class metal : public material<T> {
   T fuzz_;
 };
 
-#endif
+#endif  // INCLUDE_MATERIALS_METAL_HPP_

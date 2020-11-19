@@ -1,5 +1,5 @@
-#ifndef INCLUDED_LIGHT_SCENE_HPP
-#define INCLUDED_LIGHT_SCENE_HPP
+#ifndef INCLUDE_SCENES_LIGHT_SCENE_HPP_
+#define INCLUDE_SCENES_LIGHT_SCENE_HPP_
 
 #include "materials/material.hpp"
 #include "utilities.hpp"
@@ -54,4 +54,4 @@ hit_list<datatype> light_scene() {
       std::make_shared<bvh_node<datatype>>(world, 0.0, 1.0));
 }
 
-#endif
+#endif  // INCLUDE_SCENES_LIGHT_SCENE_HPP_

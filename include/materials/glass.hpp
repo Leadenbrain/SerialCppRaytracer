@@ -1,6 +1,6 @@
 // A glass object that will refract using snell's law
-#ifndef _INCLUDED_GLASS_HPP
-#define _INCLUDED_GLASS_HPP
+#ifndef INCLUDE_MATERIALS_GLASS_HPP_
+#define INCLUDE_MATERIALS_GLASS_HPP_
 
 #include "material.hpp"
 
@@ -49,4 +49,4 @@ class glass : public material<T> {
   }
 };
 
-#endif
+#endif  // INCLUDE_MATERIALS_GLASS_HPP_

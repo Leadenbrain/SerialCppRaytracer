@@ -1,7 +1,7 @@
 // 3-Vector class, also point3 and color
 // Pretty self-explanatory, nothing fishy here
-#ifndef INCLUDED_VEC3_HPP
-#define INCLUDED_VEC3_HPP
+#ifndef INCLUDE_VEC3_HPP_
+#define INCLUDE_VEC3_HPP_
 
 #include <cmath>
 #include <iostream>
@@ -180,4 +180,4 @@ using point3 = vec3<T>;
 template <typename T>
 using color = vec3<T>;
 
-#endif
+#endif  // INCLUDE_VEC3_HPP_

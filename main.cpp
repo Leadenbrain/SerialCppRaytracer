@@ -5,6 +5,7 @@
 #endif
 
 #include <iostream>
+#include "config_parser.hpp"
 #include "timer.hpp"
 #include "utilities.hpp"
 
@@ -22,34 +23,45 @@
 #include "objects/bounding_box.hpp"
 #include "objects/bvh.hpp"
 
-int main(void) {
-  //   Set image parameters
-  // TODO: Move all these configurations to config file
-  const datatype aspect{16.0 / 9.0};
-  const int width{2560};
-  const int height{static_cast<int>(width / aspect)};
-  const int ns{4000};
-  const int max_depth{50};
-  const color<datatype> bg(0., 0., 0.0);
+int main(int argc, char* argv[]) {
+  std::string file_name;
+  if (argc < 2)
+    file_name = "high.rt";
+  else
+    file_name = argv[1];
+  std::unordered_map<std::string, double> opts;
+  std::unordered_map<std::string, vec3<double>> vec_opts;
+
+  parser parser(file_name);
+  parser.parse_data();
+  opts = parser.data();
+  vec_opts = parser.vec_data();
+
+  const datatype aspect{opts["aspect"]};
+  const int width{opts["width"]};
+  const int height{static_cast<int>(width / aspect) + 1};
+  const int ns{opts["ns"]};
+  const int max_depth{opts["max_depth"]};
+  const color<datatype> bg{vec_opts["bg"]};
 
   // World
   timer t_scene;
-  hit_list<datatype> world = light_scene();
+  hit_list<datatype> world = standard_cornell_box();
   t_scene.end();
   double t_end = t_scene.seconds();
   if (t_end > 1.0)
     std::cerr << "Time to build scene: " << t_end << " seconds.\n";
 
   // Camera
-  point3<datatype> from(10, 2, 3);
-  point3<datatype> to(0, 1, 1);
+  point3<datatype> from(vec_opts["from"]);
+  point3<datatype> to(vec_opts["to"]);
   // point3<datatype> from(2.78, 2.78, -8.00);
   // point3<datatype> to(2.78, 2.78, 1);
-  vec3<datatype> vup(0, 1, 0);
+  vec3<datatype> vup(vec_opts["vup"]);
   // datatype focus = (from - to).norm();
-  const datatype vof{20};
-  const datatype focus{10.00};
-  const datatype ap{static_cast<datatype>(0.01)};
+  const datatype vof{opts["vof"]};
+  const datatype focus{opts["focus"]};
+  const datatype ap{opts["ap"]};
   camera<datatype> cam(from, to, vup, vof, aspect, ap, focus, 0.0, 1.0);
   //   Render our scene
   //   .ppm file size widthxheight

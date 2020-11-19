@@ -1,11 +1,10 @@
 // Wrap our color writing into a separate file
-#ifndef INCLUDED_COLOR_HPP
-#define INCLUDED_COLOR_HPP
-
-#include "vec3.hpp"
+#ifndef INCLUDE_RENDER_COLOR_HPP_
+#define INCLUDE_RENDER_COLOR_HPP_
 
 #include <iostream>
 #include <sstream>
+#include "vec3.hpp"
 
 template <typename T>
 void write_color(std::ostream& out,
@@ -68,4 +67,4 @@ color<T> ray_color(const ray<T>& r,
   return light + c * ray_color<T>(scat, bg, world, depth - 1);
 }
 
-#endif
+#endif  // INCLUDE_RENDER_COLOR_HPP_

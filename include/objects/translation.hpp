@@ -3,8 +3,8 @@
 // Pretty clever idea, still not sure how I feel about it compared to moving the
 // objects themselves in the scene
 // ->likely scales much better
-#ifndef INCLUDED_TRANSLATION_HPP
-#define INCLUDED_TRANSLATION_HPP
+#ifndef INCLUDE_OBJECTS_TRANSLATION_HPP_
+#define INCLUDE_OBJECTS_TRANSLATION_HPP_
 
 #include "hit.hpp"
 
@@ -42,4 +42,4 @@ class translate : public hit<T> {
   vec3<T> disp_;
 };
 
-#endif
+#endif  // INCLUDE_OBJECTS_TRANSLATION_HPP_

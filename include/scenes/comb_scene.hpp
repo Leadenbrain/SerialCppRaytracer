@@ -1,8 +1,5 @@
-#ifndef INCLUDED_COMBINED_SCENE_HPP
-#define INCLUDED_COMBINED_SCENE_HPP
-
-#ifndef INCLUDED_LIGHT_SCENE_HPP
-#define INCLUDED_LIGHT_SCENE_HPP
+#ifndef INCLUDE_SCENES_COMB_SCENE_HPP_
+#define INCLUDE_SCENES_COMB_SCENE_HPP_
 
 #include "materials/material.hpp"
 #include "utilities.hpp"
@@ -74,6 +71,4 @@ hit_list<datatype> light_scene() {
   return objects;
 }
 
-#endif
-
-#endif
+#endif  // INCLUDE_SCENES_COMB_SCENE_HPP_

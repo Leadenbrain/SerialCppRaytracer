@@ -1,5 +1,5 @@
-#ifndef INCLUDED_ISOTROPIC_HPP
-#define INCLUDED_ISOTROPIC_HPP
+#ifndef INCLUDE_MATERIALS_ISOTROPIC_HPP_
+#define INCLUDE_MATERIALS_ISOTROPIC_HPP_
 
 #include "material.hpp"
 #include "textures/solid.hpp"
@@ -9,8 +9,8 @@
 template <typename T>
 class isotropic : public material<T> {
  public:
-  isotropic(std::shared_ptr<uvTex<T>>(c)) : c_(c) {}
-  isotropic(color<T> c) : c_(std::make_shared<solid<T>>(c)) {}
+  explicit isotropic(std::shared_ptr<uvTex<T>>(c)) : c_(c) {}
+  explicit isotropic(color<T> c) : c_(std::make_shared<solid<T>>(c)) {}
 
   bool scatter(const ray<T>& r,
                const hit_rec<T>& rec,
@@ -25,4 +25,4 @@ class isotropic : public material<T> {
   std::shared_ptr<uvTex<T>> c_;
 };
 
-#endif
+#endif  // INCLUDE_MATERIALS_ISOTROPIC_HPP_

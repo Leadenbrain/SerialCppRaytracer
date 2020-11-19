@@ -1,6 +1,6 @@
 // Checkered pattern for texture
-#ifndef INCLUDED_TEX_CHECKER_HPP
-#define INCLUDED_TEX_CHECKER_HPP
+#ifndef INCLUDE_TEXTURES_CHECKER_HPP_
+#define INCLUDE_TEXTURES_CHECKER_HPP_
 
 #include "texture.hpp"
 
@@ -14,9 +14,7 @@ class checker : public uvTex<T> {
       : even_(std::make_shared<solid<T>>(c1)),
         odd_(std::make_shared<solid<T>>(c2)) {}
 
-  virtual color<T> val(const T& u,
-                       const T& v,
-                       const point3<T>& p) const override {
+  color<T> val(const T& u, const T& v, const point3<T>& p) const override {
     T s = std::sin(10 * p.getX()) * std::sin(10 * p.getY()) *
           std::sin(10 * p.getZ());
     if (s < 0)
@@ -30,4 +28,4 @@ class checker : public uvTex<T> {
   std::shared_ptr<uvTex<T>> odd_;
 };
 
-#endif
+#endif  // INCLUDE_TEXTURES_CHECKER_HPP_

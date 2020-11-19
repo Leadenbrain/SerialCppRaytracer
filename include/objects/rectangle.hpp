@@ -1,6 +1,6 @@
 // TODO: Make rectangle base class and sub-class for planes?
-#ifndef INCLUDED_RECTANGLE_HPP
-#define INCLUDED_RECTANGLE_HPP
+#ifndef INCLUDE_OBJECTS_RECTANGLE_HPP_
+#define INCLUDE_OBJECTS_RECTANGLE_HPP_
 
 #include "bounding_box.hpp"
 #include "hit.hpp"
@@ -18,14 +18,11 @@ class xy_rectangle : public hit<T> {
                const T& y1,
                const T& k,
                std::shared_ptr<material<T>> m)
-      : mat(m), x0_(x0), x1_(x1), y0_(y0), y1_(y1), k_(k){};
+      : mat(m), x0_(x0), x1_(x1), y0_(y0), y1_(y1), k_(k) {}
 
-  virtual bool is_hit(const ray<T>&,
-                      const T&,
-                      const T&,
-                      hit_rec<T>&) const override;
+  bool is_hit(const ray<T>&, const T&, const T&, hit_rec<T>&) const override;
 
-  virtual bool bound_box(const T&, const T&, BB<T>& out) const override {
+  bool bound_box(const T&, const T&, BB<T>& out) const override {
     out = BB<T>(point3<T>(x0_, y0_, k_ - 0.0001),
                 point3<T>(x1_, y1_, k_ + 0.0001));
     return true;
@@ -178,4 +175,4 @@ bool yz_rectangle<T>::is_hit(const ray<T>& r,
 // template <typename T>
 // bool xy_rectangle<T>::bound_box(const T& t0, const T& t1, BB<T>& out) const
 
-#endif
+#endif  // INCLUDE_OBJECTS_RECTANGLE_HPP_

@@ -1,6 +1,6 @@
 // A sphere we can render
-#ifndef INCLUDED_SPHERE_HPP
-#define INCLUDED_SPHERE_HPP
+#ifndef INCLUDE_OBJECTS_SPHERE_HPP_
+#define INCLUDE_OBJECTS_SPHERE_HPP_
 
 #include "hit.hpp"
 #include "vec3.hpp"
@@ -20,10 +20,7 @@ class sphere : public hit<T> {
   point3<T> center() const { return c_; }
 
   // We want to override the base function
-  virtual bool is_hit(const ray<T>&,
-                      const T&,
-                      const T&,
-                      hit_rec<T>&) const override;
+  bool is_hit(const ray<T>&, const T&, const T&, hit_rec<T>&) const override;
 
   bool bound_box(const T&, const T&, BB<T>& out) const override {
     out = BB<T>(c_ - vec3<T>(r_, r_, r_), c_ + vec3<T>(r_, r_, r_));
@@ -83,4 +80,4 @@ bool sphere<T>::is_hit(const ray<T>& r,
   return true;
 }
 
-#endif
+#endif  // INCLUDE_OBJECTS_SPHERE_HPP_

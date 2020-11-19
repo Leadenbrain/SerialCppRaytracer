@@ -1,5 +1,5 @@
-#ifndef INCLUDED_BOUNDING_BOX_HPP
-#define INCLUDED_BOUNDING_BOX_HPP
+#ifndef INCLUDE_OBJECTS_BOUNDING_BOX_HPP_
+#define INCLUDE_OBJECTS_BOUNDING_BOX_HPP_
 
 #include <cmath>
 #include <utility>
@@ -105,4 +105,4 @@ BB<T> surround_box(BB<T> bb0, BB<T> bb1) {
   return BB<T>(small, big);
 }
 
-#endif
+#endif  // INCLUDE_OBJECTS_BOUNDING_BOX_HPP_

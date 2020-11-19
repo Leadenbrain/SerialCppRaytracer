@@ -1,0 +1,17 @@
+# DEFAULT MEDIUM RENDER CONFIG
+# IMAGE PARAMETERS
+#aspect=1.77778
+aspect=1
+width=600
+ns=1000
+max_depth=50
+bg=,0,0,0
+# WORLD PARAMETERS
+#Scene=5
+# CAMERA PARAMETERS
+from=,10.0,2.0,3.0
+to=,0,1,1
+vup=,0,1,0
+vof=40
+focus=10
+ap=0.01

@@ -9,3 +9,7 @@ Serial CPP Raytracer for CSE701
 ## Run
 
 ```./a.out > out.ppm```
+
+There are config files in config/ that can be passed into the compiled program.
+
+```./a.out high.rt > out.ppm```

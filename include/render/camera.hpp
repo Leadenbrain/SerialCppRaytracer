@@ -2,8 +2,8 @@
 // There isn't too much going on here, just setting up the screen and camera
 // location/configuration
 // TODO: these parameters chould be in some sort of .yaml or something
-#ifndef INCLUDED_CAMERA_HPP
-#define INCLUDED_CAMERA_HPP
+#ifndef INCLUDE_RENDER_CAMERA_HPP_
+#define INCLUDE_RENDER_CAMERA_HPP_
 
 #include "ray.hpp"
 #include "utilities.hpp"
@@ -61,4 +61,4 @@ class camera {
   T r_, t0_, t1_;
 };
 
-#endif
+#endif  // INCLUDE_RENDER_CAMERA_HPP_

@@ -1,5 +1,5 @@
-#ifndef INCLUDED_CUBE_HPP
-#define INCLUDED_CUBE_HPP
+#ifndef INCLUDE_OBJECTS_CUBE_HPP_
+#define INCLUDE_OBJECTS_CUBE_HPP_
 
 #include "vec3.hpp"
 
@@ -54,4 +54,4 @@ cube<T>::cube(const point3<T>& min,
       min.getY(), max.getY(), min.getZ(), max.getZ(), min.getX(), m));
 }
 
-#endif
+#endif  // INCLUDE_OBJECTS_CUBE_HPP_

@@ -1,5 +1,5 @@
-#ifndef INCLUDED_RANDOM_SCENE_HPP
-#define INCLUDED_RANDOM_SCENE_HPP
+#ifndef INCLUDE_SCENES_RANDOM_SCENE_HPP_
+#define INCLUDE_SCENES_RANDOM_SCENE_HPP_
 
 #include "materials/material.hpp"
 #include "utilities.hpp"
@@ -78,4 +78,4 @@ hit_list<datatype> random_scene() {
   // return world;
 }
 
-#endif
+#endif  // INCLUDE_SCENES_RANDOM_SCENE_HPP_

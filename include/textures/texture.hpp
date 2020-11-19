@@ -1,6 +1,6 @@
 // Base class for textures
-#ifndef INCLUDED_TEXTURE_HPP
-#define INCLUDED_TEXTURE_HPP
+#ifndef INCLUDE_TEXTURES_TEXTURE_HPP_
+#define INCLUDE_TEXTURES_TEXTURE_HPP_
 
 #include "utilities.hpp"
 #include "vec3.hpp"
@@ -12,4 +12,4 @@ class uvTex {
   virtual color<T> val(const T& u, const T& v, const point3<T>& p) const = 0;
 };
 
-#endif
+#endif  // INCLUDE_TEXTURES_TEXTURE_HPP_

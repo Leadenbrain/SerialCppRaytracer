@@ -1,8 +1,8 @@
 // Base class for our materials
 // Need abstraction for behaviour of rays on a mat
 
-#ifndef INCLUDED_MATERIAL_HPP
-#define INCLUDED_MATERIAL_HPP
+#ifndef INCLUDE_MATERIALS_MATERIAL_HPP_
+#define INCLUDE_MATERIALS_MATERIAL_HPP_
 
 #include "render/ray.hpp"
 #include "utilities.hpp"
@@ -28,4 +28,4 @@ class material {
   }
 };
 
-#endif
+#endif  // INCLUDE_MATERIALS_MATERIAL_HPP_

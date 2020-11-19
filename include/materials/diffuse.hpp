@@ -1,8 +1,8 @@
 // Subclass of material for diffuse objects
 // This corresponds to objects which randomly scatter light on impact
 // This is likely the majority of objects
-#ifndef INCLUDED_DIFFUSE_HPP
-#define INCLUDED_DIFFUSE_HPP
+#ifndef INCLUDE_MATERIALS_DIFFUSE_HPP_
+#define INCLUDE_MATERIALS_DIFFUSE_HPP_
 
 #include "material.hpp"
 #include "textures/solid.hpp"
@@ -39,4 +39,4 @@ class diffuse : public material<T> {
   std::shared_ptr<uvTex<T>> diff_col;
 };
 
-#endif
+#endif  // INCLUDE_MATERIALS_DIFFUSE_HPP_

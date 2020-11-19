@@ -3,8 +3,8 @@
 // Pretty clever idea, still not sure how I feel about it compared to moving the
 // objects themselves in the scene
 // ->likely scales much better
-#ifndef INCLUDED_Y_ROTATION_HPP
-#define INCLUDED_Y_ROTATION_HPP
+#ifndef INCLUDE_OBJECTS_Y_ROTATION_HPP_
+#define INCLUDE_OBJECTS_Y_ROTATION_HPP_
 
 #include "hit.hpp"
 
@@ -14,10 +14,10 @@ class y_rotation : public hit<T> {
   y_rotation();
   y_rotation(std::shared_ptr<hit<T>> p, const T& t_deg);
 
-  virtual bool is_hit(const ray<T>& r,
-                      const T& t_min,
-                      const T& t_max,
-                      hit_rec<T>& out) const override;
+  bool is_hit(const ray<T>& r,
+              const T& t_min,
+              const T& t_max,
+              hit_rec<T>& out) const override;
 
   bool bound_box(const T&, const T&, BB<T>& out) const override {
     out = bound_;
@@ -102,4 +102,4 @@ bool y_rotation<T>::is_hit(const ray<T>& r,
   return true;
 }
 
-#endif
+#endif  // INCLUDE_OBJECTS_Y_ROTATION_HPP_

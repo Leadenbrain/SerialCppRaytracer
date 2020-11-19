@@ -2,8 +2,8 @@
 // They get sent from our camera into the world and will interact with objects
 // As they move through our shutter time, they will pick up color data we
 // collect at the end
-#ifndef _INCLUDED_RAY_HPP
-#define _INCLUDED_RAY_HPP
+#ifndef INCLUDE_RENDER_RAY_HPP_
+#define INCLUDE_RENDER_RAY_HPP_
 
 #include "vec3.hpp"
 
@@ -27,4 +27,4 @@ class ray {
   T time_;
 };
 
-#endif
+#endif  // INCLUDE_RENDER_RAY_HPP_

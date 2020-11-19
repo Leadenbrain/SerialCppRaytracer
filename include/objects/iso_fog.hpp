@@ -1,5 +1,5 @@
-#ifndef INCLUDED_ISO_FOG_HPP
-#define INCLUDED_ISO_FOG_HPP
+#ifndef INCLUDE_OBJECTS_ISO_FOG_HPP_
+#define INCLUDE_OBJECTS_ISO_FOG_HPP_
 
 #ifndef ACNE
 #define ACNE 0.0001
@@ -26,10 +26,7 @@ class iso_fog : public hit<T> {
         rho_(-1 / rho),
         phase_(std::make_shared<isotropic<T>>(c)) {}
 
-  virtual bool is_hit(const ray<T>&,
-                      const T&,
-                      const T&,
-                      hit_rec<T>&) const override;
+  bool is_hit(const ray<T>&, const T&, const T&, hit_rec<T>&) const override;
 
   bool bound_box(const T& t0, const T& t1, BB<T>& out) const override {
     return bound_->bound_box(t0, t1, out);
@@ -87,4 +84,4 @@ bool iso_fog<T>::is_hit(const ray<T>& r,
   return true;
 }
 
-#endif
+#endif  // INCLUDE_OBJECTS_ISO_FOG_HPP_
