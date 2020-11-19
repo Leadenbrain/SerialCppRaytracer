@@ -104,7 +104,7 @@ inline vec3<T> operator/(const vec3<T>& v, const T& t) {
 
 // Perform dot product
 template <typename T>
-inline T dot(const vec3<T>& u, const vec3<T> v) {
+inline T dot(const vec3<T>& u, const vec3<T>& v) {
   return u.getX() * v.getX() + u.getY() * v.getY() + u.getZ() * v.getZ();
 }
 

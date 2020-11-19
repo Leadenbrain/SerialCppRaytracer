@@ -43,7 +43,6 @@ void parser::parse_data(const std::string& file) {
   std::string temp_s;
   double x, y, z;
   std::vector<std::string> ss;
-  std::string delimiter = "#";
 
   while (getline(input, s))
     if (!((s[0] == '#') || (isspace(s[0])))) {

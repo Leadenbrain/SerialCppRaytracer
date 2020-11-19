@@ -73,12 +73,9 @@ class xz_rectangle : public hit<T> {
                std::shared_ptr<material<T>> m)
       : mat(m), x0_(x0), x1_(x1), z0_(z0), z1_(z1), k_(k){};
 
-  virtual bool is_hit(const ray<T>&,
-                      const T&,
-                      const T&,
-                      hit_rec<T>&) const override;
+  bool is_hit(const ray<T>&, const T&, const T&, hit_rec<T>&) const override;
 
-  virtual bool bound_box(const T&, const T&, BB<T>& out) const override {
+  bool bound_box(const T&, const T&, BB<T>& out) const override {
     out = BB<T>(point3<T>(x0_, z0_, k_ - 0.0001),
                 point3<T>(x1_, z1_, k_ + 0.0001));
     return true;
@@ -129,12 +126,9 @@ class yz_rectangle : public hit<T> {
                std::shared_ptr<material<T>> m)
       : mat(m), y0_(y0), y1_(y1), z0_(z0), z1_(z1), k_(k){};
 
-  virtual bool is_hit(const ray<T>&,
-                      const T&,
-                      const T&,
-                      hit_rec<T>&) const override;
+  bool is_hit(const ray<T>&, const T&, const T&, hit_rec<T>&) const override;
 
-  virtual bool bound_box(const T&, const T&, BB<T>& out) const override {
+  bool bound_box(const T&, const T&, BB<T>& out) const override {
     out = BB<T>(point3<T>(y0_, z0_, k_ - 0.0001),
                 point3<T>(y1_, z1_, k_ + 0.0001));
     return true;
