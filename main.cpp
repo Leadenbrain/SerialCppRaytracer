@@ -25,27 +25,29 @@
 int main(void) {
   //   Set image parameters
   // TODO: Move all these configurations to config file
-  const datatype aspect{16.0 / 16.0};
-  const int width{400};
+  const datatype aspect{16.0 / 9.0};
+  const int width{2560};
   const int height{static_cast<int>(width / aspect)};
-  const int ns{10000};
+  const int ns{4000};
   const int max_depth{50};
   const color<datatype> bg(0., 0., 0.0);
 
   // World
   timer t_scene;
-  hit_list<datatype> world = fog_cornell_box();
+  hit_list<datatype> world = light_scene();
   t_scene.end();
   double t_end = t_scene.seconds();
   if (t_end > 1.0)
     std::cerr << "Time to build scene: " << t_end << " seconds.\n";
 
   // Camera
-  point3<datatype> from(2.78, 2.78, -8.00);
-  point3<datatype> to(2.78, 2.78, 1);
+  point3<datatype> from(10, 2, 3);
+  point3<datatype> to(0, 1, 1);
+  // point3<datatype> from(2.78, 2.78, -8.00);
+  // point3<datatype> to(2.78, 2.78, 1);
   vec3<datatype> vup(0, 1, 0);
   // datatype focus = (from - to).norm();
-  const datatype vof{40};
+  const datatype vof{20};
   const datatype focus{10.00};
   const datatype ap{static_cast<datatype>(0.01)};
   camera<datatype> cam(from, to, vup, vof, aspect, ap, focus, 0.0, 1.0);
