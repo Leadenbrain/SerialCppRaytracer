@@ -1,8 +1,8 @@
 # DEFAULT LOFI RENDER CONFIG
 # IMAGE PARAMETERS
 aspect=1.0
-width=600
-ns=400
+width=300
+ns=200
 max_depth=50
 bg=,0,0,0
 # WORLD PARAMETERS

@@ -99,7 +99,8 @@ hit_list<datatype> fog_cornell_box() {
   objects.add(
       std::make_shared<iso_fog<datatype>>(b2, 1, color<datatype>(1, 0, 1)));
 
-  return objects;
+  return hit_list<datatype>(
+      std::make_shared<bvh_node<datatype>>(objects, 0.0, 1.0));
 }
 
 #endif  // INCLUDE_SCENES_CORNELL_BOX_HPP_

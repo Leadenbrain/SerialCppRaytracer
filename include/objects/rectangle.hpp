@@ -76,8 +76,8 @@ class xz_rectangle : public hit<T> {
   bool is_hit(const ray<T>&, const T&, const T&, hit_rec<T>&) const override;
 
   bool bound_box(const T&, const T&, BB<T>& out) const override {
-    out = BB<T>(point3<T>(x0_, z0_, k_ - 0.0001),
-                point3<T>(x1_, z1_, k_ + 0.0001));
+    out = BB<T>(point3<T>(x0_, k_ - 0.0001, z0_),
+                point3<T>(x1_, k_ + 0.0001, z1_));
     return true;
   }
 
@@ -129,8 +129,8 @@ class yz_rectangle : public hit<T> {
   bool is_hit(const ray<T>&, const T&, const T&, hit_rec<T>&) const override;
 
   bool bound_box(const T&, const T&, BB<T>& out) const override {
-    out = BB<T>(point3<T>(y0_, z0_, k_ - 0.0001),
-                point3<T>(y1_, z1_, k_ + 0.0001));
+    out = BB<T>(point3<T>(k_ - 0.0001, y0_, z0_),
+                point3<T>(k_ + 0.0001, y1_, z1_));
     return true;
   }
 

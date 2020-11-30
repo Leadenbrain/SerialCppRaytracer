@@ -90,10 +90,10 @@ bool y_rotation<T>::is_hit(const ray<T>& r,
   point3<T> p = rec.p;
   vec3<T> n = rec.n;
 
-  p[0] = cos_t * rec.p[0] - sin_t * rec.p[2];
+  p[0] = cos_t * rec.p[0] + sin_t * rec.p[2];
   p[2] = -sin_t * rec.p[0] + cos_t * rec.p[2];
 
-  n[0] = cos_t * rec.n[0] - sin_t * rec.n[2];
+  n[0] = cos_t * rec.n[0] + sin_t * rec.n[2];
   n[2] = -sin_t * rec.n[0] + cos_t * rec.n[2];
 
   rec.p = p;

@@ -26,7 +26,7 @@
 int main(int argc, char* argv[]) {
   std::string file_name;
   if (argc < 2)
-    file_name = "high.rt";
+    file_name = "low.rt";
   else
     file_name = argv[1];
   std::unordered_map<std::string, double> opts;
@@ -38,10 +38,10 @@ int main(int argc, char* argv[]) {
   vec_opts = parser.vec_data();
 
   const datatype aspect{opts["aspect"]};
-  const int width{opts["width"]};
+  const int width{static_cast<int>(opts["width"])};
   const int height{static_cast<int>(width / aspect) + 1};
-  const int ns{opts["ns"]};
-  const int max_depth{opts["max_depth"]};
+  const int ns{static_cast<int>(opts["ns"])};
+  const int max_depth{static_cast<int>(opts["max_depth"])};
   const color<datatype> bg{vec_opts["bg"]};
 
   // World
