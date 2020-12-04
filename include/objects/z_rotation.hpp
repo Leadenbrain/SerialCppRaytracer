@@ -48,8 +48,8 @@ z_rotation<T>::z_rotation(std::shared_ptr<hit<T>> p, const T& t_deg) : p_(p) {
     for (int j = 0; j < 2; j++) {
       for (int k = 0; k < 2; k++) {
         T x = i * bound_.max().getX();
-        T y = i * bound_.max().getY();
-        T z = i * bound_.max().getZ();
+        T y = j * bound_.max().getY();
+        T z = k * bound_.max().getZ();
 
         T x_out = cos_t * x - sin_t * y;
         T y_out = sin_t * x + cos_t * y;
