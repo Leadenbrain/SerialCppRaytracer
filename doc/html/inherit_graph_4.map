@@ -1,8 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classmaterial.html" title="Material base class." alt="" coords="5,107,120,133"/>
-<area shape="rect" id="node2" href="$classdiffuse.html" title="Object for diffuse reflection of light; subclass of material." alt="" coords="186,5,290,32"/>
-<area shape="rect" id="node3" href="$classdiffuse__light.html" title="Emissive diffuse light subclass of material." alt="" coords="168,56,308,83"/>
-<area shape="rect" id="node4" href="$classglass.html" title="Glass subclass of material." alt="" coords="191,107,285,133"/>
-<area shape="rect" id="node5" href="$classisotropic.html" title="Fog object for isotropic scattering; subclass of material." alt="" coords="180,157,296,184"/>
-<area shape="rect" id="node6" href="$classmetal.html" title="Reflective metal subclass of material." alt="" coords="189,208,287,235"/>
-</map>
