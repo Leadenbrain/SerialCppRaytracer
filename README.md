@@ -9,7 +9,7 @@ This is a C++ header engine for serial ray tracing, written as a requirement for
 ## Build Instructions
 
 ```bash
-g++ -O2 main.cpp -I include
+g++ -O3 main.cpp -I include
 ```
 
 Alternatively using cmake:
