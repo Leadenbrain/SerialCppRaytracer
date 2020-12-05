@@ -35,7 +35,7 @@ There are config files in config/ that can be passed into the compiled program. 
 
 Glass and metal spheres with rectangular and spherical light
 Resolution: 2560 x 1440, samples: 1k
-![image](./Output/spheres_2lights.png)
+![image](spheres_2lights.png)
 
 Standard Cornell Box at 1k Resolution with 10k Samples per pixel
-![image](./Output/cb_1kres_10ks.png)
+![image](cb_1kres_10ks.png)
