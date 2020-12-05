@@ -39,3 +39,7 @@ Resolution: 2560 x 1440, samples: 1k
 
 Standard Cornell Box at 1k Resolution with 10k Samples per pixel
 ![image](cb_1kres_10ks.png)
+
+Scene Showcasing full functionality
+Resolution 800x800 with 10k samples per pixel
+![image](feature.png)
