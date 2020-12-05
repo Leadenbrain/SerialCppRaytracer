@@ -1,0 +1,12 @@
+<map id="include/textures/solid.hpp" name="include/textures/solid.hpp">
+<area shape="rect" id="node1" title="Solid one color texture." alt="" coords="188,5,379,32"/>
+<area shape="rect" id="node2" href="$diffuse_8hpp.html" title="Object for diffuse (random) scattering. Subclass of material." alt="" coords="399,162,610,189"/>
+<area shape="rect" id="node8" href="$diffuse__light_8hpp.html" title="Emissive diffuse light material." alt="" coords="192,155,375,196"/>
+<area shape="rect" id="node9" href="$isotropic_8hpp.html" title="Isotropic fog material." alt="" coords="5,80,228,107"/>
+<area shape="rect" id="node3" href="$comb__scene_8hpp.html" title="Header file for Combined scene example (unfinished)" alt="" coords="17,244,176,285"/>
+<area shape="rect" id="node4" href="$cornell__box_8hpp.html" title="Header file for cornell box scene examples (unfinished)" alt="" coords="200,244,367,285"/>
+<area shape="rect" id="node6" href="$light__scene_8hpp.html" title="Header file for light scene example (unfinished)" alt="" coords="391,244,541,285"/>
+<area shape="rect" id="node7" href="$random__scene_8hpp.html" title="Header file for random scene example (unfinished)" alt="" coords="565,244,737,285"/>
+<area shape="rect" id="node5" href="$main_8cpp.html" title="Main file for Serial ray tracer project." alt="" coords="425,333,507,360"/>
+<area shape="rect" id="node10" href="$iso__fog_8hpp.html" title="Isotropically scattering fog object." alt="" coords="25,155,168,196"/>
+</map>

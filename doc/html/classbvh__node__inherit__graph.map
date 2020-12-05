@@ -1,0 +1,4 @@
+<map id="bvh_node&lt; T &gt;" name="bvh_node&lt; T &gt;">
+<area shape="rect" id="node1" title="BVH Node class, these nodes recurse to build a tree." alt="" coords="5,80,128,107"/>
+<area shape="rect" id="node2" href="$classhit.html" title="Base class for hittable objects." alt="" coords="28,5,105,32"/>
+</map>

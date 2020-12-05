@@ -1,0 +1,10 @@
+<map id="include/vec3.hpp" name="include/vec3.hpp">
+<area shape="rect" id="node1" title="Custom 3D vector class for points, colours and rays." alt="" coords="88,5,220,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="58,80,138,107"/>
+<area shape="rect" id="node3" href="$utilities_8hpp.html" title="All the random functionality I am too lazy to organize elsewhere." alt="" coords="162,80,261,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,155,68,181"/>
+<area shape="rect" id="node5" title=" " alt="" coords="92,155,157,181"/>
+<area shape="rect" id="node6" title=" " alt="" coords="182,155,241,181"/>
+<area shape="rect" id="node7" title=" " alt="" coords="265,155,342,181"/>
+<area shape="rect" id="node8" title=" " alt="" coords="367,155,429,181"/>
+</map>

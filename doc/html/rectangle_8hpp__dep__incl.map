@@ -1,0 +1,8 @@
+<map id="include/objects/rectangle.hpp" name="include/objects/rectangle.hpp">
+<area shape="rect" id="node1" title="Rectangular plane object to be rendered." alt="" coords="190,5,403,32"/>
+<area shape="rect" id="node2" href="$cube_8hpp.html" title="Cube object made of rectangles." alt="" coords="111,87,293,114"/>
+<area shape="rect" id="node6" href="$light__scene_8hpp.html" title="Header file for light scene example (unfinished)" alt="" coords="317,80,468,121"/>
+<area shape="rect" id="node3" href="$comb__scene_8hpp.html" title="Header file for Combined scene example (unfinished)" alt="" coords="5,169,164,211"/>
+<area shape="rect" id="node4" href="$cornell__box_8hpp.html" title="Header file for cornell box scene examples (unfinished)" alt="" coords="188,169,355,211"/>
+<area shape="rect" id="node5" href="$main_8cpp.html" title="Main file for Serial ray tracer project." alt="" coords="290,259,373,285"/>
+</map>

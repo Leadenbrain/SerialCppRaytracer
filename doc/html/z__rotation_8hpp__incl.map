@@ -1,0 +1,15 @@
+<map id="include/objects/z_rotation.hpp" name="include/objects/z_rotation.hpp">
+<area shape="rect" id="node1" title="Class for rotation of object around the z axis." alt="" coords="5,5,223,32"/>
+<area shape="rect" id="node2" href="$hit_8hpp.html" title="Abstract object that can be hit by a ray." alt="" coords="81,80,147,107"/>
+<area shape="rect" id="node3" href="$bounding__box_8hpp.html" title="Bounding box object, used to compute BVH tree." alt="" coords="43,155,185,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="28,229,88,256"/>
+<area shape="rect" id="node5" href="$ray_8hpp.html" title="The ray object for our tracing algorithm." alt="" coords="113,229,227,256"/>
+<area shape="rect" id="node6" href="$vec3_8hpp.html" title="Custom 3D vector class for points, colours and rays." alt="" coords="129,304,211,331"/>
+<area shape="rect" id="node7" title=" " alt="" coords="74,379,154,405"/>
+<area shape="rect" id="node8" href="$utilities_8hpp.html" title="All the random functionality I am too lazy to organize elsewhere." alt="" coords="178,379,277,405"/>
+<area shape="rect" id="node9" title=" " alt="" coords="21,453,84,480"/>
+<area shape="rect" id="node10" title=" " alt="" coords="108,453,173,480"/>
+<area shape="rect" id="node11" title=" " alt="" coords="198,453,257,480"/>
+<area shape="rect" id="node12" title=" " alt="" coords="281,453,358,480"/>
+<area shape="rect" id="node13" title=" " alt="" coords="383,453,445,480"/>
+</map>

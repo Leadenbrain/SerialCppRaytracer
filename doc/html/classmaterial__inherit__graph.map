@@ -1,0 +1,8 @@
+<map id="material&lt; T &gt;" name="material&lt; T &gt;">
+<area shape="rect" id="node1" title="Material base class." alt="" coords="288,5,403,32"/>
+<area shape="rect" id="node2" href="$classdiffuse.html" title="Object for diffuse reflection of light; subclass of material." alt="" coords="5,80,109,107"/>
+<area shape="rect" id="node3" href="$classdiffuse__light.html" title="Emissive diffuse light subclass of material." alt="" coords="134,80,274,107"/>
+<area shape="rect" id="node4" href="$classglass.html" title="Glass subclass of material." alt="" coords="298,80,393,107"/>
+<area shape="rect" id="node5" href="$classisotropic.html" title="Fog object for isotropic scattering; subclass of material." alt="" coords="417,80,533,107"/>
+<area shape="rect" id="node6" href="$classmetal.html" title="Reflective metal subclass of material." alt="" coords="557,80,656,107"/>
+</map>

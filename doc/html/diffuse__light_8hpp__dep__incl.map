@@ -1,0 +1,7 @@
+<map id="include/materials/diffuse_light.hpp" name="include/materials/diffuse_light.hpp">
+<area shape="rect" id="node1" title="Emissive diffuse light material." alt="" coords="180,5,363,47"/>
+<area shape="rect" id="node2" href="$comb__scene_8hpp.html" title="Header file for Combined scene example (unfinished)" alt="" coords="5,95,164,136"/>
+<area shape="rect" id="node3" href="$cornell__box_8hpp.html" title="Header file for cornell box scene examples (unfinished)" alt="" coords="188,95,355,136"/>
+<area shape="rect" id="node5" href="$light__scene_8hpp.html" title="Header file for light scene example (unfinished)" alt="" coords="379,95,529,136"/>
+<area shape="rect" id="node4" href="$main_8cpp.html" title="Main file for Serial ray tracer project." alt="" coords="321,184,403,211"/>
+</map>

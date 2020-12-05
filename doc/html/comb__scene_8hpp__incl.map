@@ -1,0 +1,34 @@
+<map id="include/scenes/comb_scene.hpp" name="include/scenes/comb_scene.hpp">
+<area shape="rect" id="node1" title="Header file for Combined scene example (unfinished)" alt="" coords="841,5,1000,47"/>
+<area shape="rect" id="node2" href="$hit__list_8hpp.html" title="List of hittable objects." alt="" coords="1651,169,1796,196"/>
+<area shape="rect" id="node15" href="$diffuse_8hpp.html" title="Object for diffuse (random) scattering. Subclass of material." alt="" coords="741,169,901,196"/>
+<area shape="rect" id="node19" href="$diffuse__light_8hpp.html" title="Emissive diffuse light material." alt="" coords="520,169,716,196"/>
+<area shape="rect" id="node20" href="$glass_8hpp.html" title="A glass object that refracts/reflects using Snell&#39;s Law." alt="" coords="5,169,156,196"/>
+<area shape="rect" id="node21" href="$metal_8hpp.html" title="Reflective surface, with additional fuzzy scattering." alt="" coords="341,169,495,196"/>
+<area shape="rect" id="node22" href="$bvh_8hpp.html" title="Class for our Bounding Volume Hierarchy. Acts as both tree and root." alt="" coords="241,95,366,121"/>
+<area shape="rect" id="node24" href="$cube_8hpp.html" title="Cube object made of rectangles." alt="" coords="855,95,987,121"/>
+<area shape="rect" id="node26" href="$iso__fog_8hpp.html" title="Isotropically scattering fog object." alt="" coords="683,95,831,121"/>
+<area shape="rect" id="node28" href="$moving__sphere_8hpp.html" title="Sphere object moving, for motion blur." alt="" coords="1011,95,1212,121"/>
+<area shape="rect" id="node29" href="$sphere_8hpp.html" title="Sphere object to be rendered." alt="" coords="1236,95,1381,121"/>
+<area shape="rect" id="node30" href="$translation_8hpp.html" title="Class for translation of a hittable object." alt="" coords="1406,95,1577,121"/>
+<area shape="rect" id="node31" href="$y__rotation_8hpp.html" title="Class for rotation of object around the y axis." alt="" coords="1601,95,1768,121"/>
+<area shape="rect" id="node32" href="$checker_8hpp.html" title="Two color checkered texture." alt="" coords="1570,244,1727,271"/>
+<area shape="rect" id="node3" href="$hit_8hpp.html" title="Abstract object that can be hit by a ray." alt="" coords="1314,244,1381,271"/>
+<area shape="rect" id="node4" href="$bounding__box_8hpp.html" title="Bounding box object, used to compute BVH tree." alt="" coords="655,319,797,345"/>
+<area shape="rect" id="node5" title=" " alt="" coords="736,393,796,420"/>
+<area shape="rect" id="node6" href="$ray_8hpp.html" title="The ray object for our tracing algorithm." alt="" coords="597,393,711,420"/>
+<area shape="rect" id="node7" href="$vec3_8hpp.html" title="Custom 3D vector class for points, colours and rays." alt="" coords="703,468,784,495"/>
+<area shape="rect" id="node8" title=" " alt="" coords="647,543,727,569"/>
+<area shape="rect" id="node9" href="$utilities_8hpp.html" title="All the random functionality I am too lazy to organize elsewhere." alt="" coords="751,543,850,569"/>
+<area shape="rect" id="node10" title=" " alt="" coords="595,617,657,644"/>
+<area shape="rect" id="node11" title=" " alt="" coords="681,617,747,644"/>
+<area shape="rect" id="node12" title=" " alt="" coords="771,617,830,644"/>
+<area shape="rect" id="node13" title=" " alt="" coords="854,617,931,644"/>
+<area shape="rect" id="node14" title=" " alt="" coords="956,617,1019,644"/>
+<area shape="rect" id="node16" href="$material_8hpp.html" title="Base class for materials." alt="" coords="565,244,671,271"/>
+<area shape="rect" id="node17" href="$solid_8hpp.html" title="Solid one color texture." alt="" coords="777,244,915,271"/>
+<area shape="rect" id="node18" href="$texture_8hpp.html" title="Bass class for textures." alt="" coords="821,319,919,345"/>
+<area shape="rect" id="node23" title=" " alt="" coords="181,169,266,196"/>
+<area shape="rect" id="node25" href="$rectangle_8hpp.html" title="Rectangular plane object to be rendered." alt="" coords="1173,169,1284,196"/>
+<area shape="rect" id="node27" href="$isotropic_8hpp.html" title="Isotropic fog material." alt="" coords="925,169,1097,196"/>
+</map>

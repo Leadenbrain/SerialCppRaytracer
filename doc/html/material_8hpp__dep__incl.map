@@ -1,0 +1,14 @@
+<map id="include/materials/material.hpp" name="include/materials/material.hpp">
+<area shape="rect" id="node1" title="Base class for materials." alt="" coords="459,5,682,32"/>
+<area shape="rect" id="node2" href="$diffuse_8hpp.html" title="Object for diffuse (random) scattering. Subclass of material." alt="" coords="235,162,445,189"/>
+<area shape="rect" id="node8" href="$diffuse__light_8hpp.html" title="Emissive diffuse light material." alt="" coords="695,155,878,196"/>
+<area shape="rect" id="node9" href="$glass_8hpp.html" title="A glass object that refracts/reflects using Snell&#39;s Law." alt="" coords="470,162,671,189"/>
+<area shape="rect" id="node10" href="$isotropic_8hpp.html" title="Isotropic fog material." alt="" coords="801,80,1023,107"/>
+<area shape="rect" id="node12" href="$metal_8hpp.html" title="Reflective surface, with additional fuzzy scattering." alt="" coords="5,162,211,189"/>
+<area shape="rect" id="node3" href="$comb__scene_8hpp.html" title="Header file for Combined scene example (unfinished)" alt="" coords="491,244,650,285"/>
+<area shape="rect" id="node4" href="$cornell__box_8hpp.html" title="Header file for cornell box scene examples (unfinished)" alt="" coords="674,244,841,285"/>
+<area shape="rect" id="node6" href="$light__scene_8hpp.html" title="Header file for light scene example (unfinished)" alt="" coords="317,244,467,285"/>
+<area shape="rect" id="node7" href="$random__scene_8hpp.html" title="Header file for random scene example (unfinished)" alt="" coords="121,244,293,285"/>
+<area shape="rect" id="node5" href="$main_8cpp.html" title="Main file for Serial ray tracer project." alt="" coords="351,333,433,360"/>
+<area shape="rect" id="node11" href="$iso__fog_8hpp.html" title="Isotropically scattering fog object." alt="" coords="902,155,1045,196"/>
+</map>

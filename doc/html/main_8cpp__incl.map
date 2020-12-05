@@ -1,0 +1,46 @@
+<map id="main.cpp" name="main.cpp">
+<area shape="rect" id="node1" title="Main file for Serial ray tracer project." alt="" coords="1032,5,1115,32"/>
+<area shape="rect" id="node2" href="$config__parser_8hpp.html" title="Configuration parser for render and camera settings." alt="" coords="323,80,459,107"/>
+<area shape="rect" id="node15" href="$timer_8hpp.html" title="Simple chrono timer object." alt="" coords="34,80,118,107"/>
+<area shape="rect" id="node17" href="$hit__list_8hpp.html" title="List of hittable objects." alt="" coords="1911,80,2057,107"/>
+<area shape="rect" id="node22" href="$camera_8hpp.html" title="Camera object to render scene from." alt="" coords="385,379,530,405"/>
+<area shape="rect" id="node23" href="$color_8hpp.html" title="Wrapper file for color writing." alt="" coords="1847,453,1974,480"/>
+<area shape="rect" id="node24" href="$cornell__box_8hpp.html" title="Header file for cornell box scene examples (unfinished)" alt="" coords="1258,80,1433,107"/>
+<area shape="rect" id="node43" href="$light__scene_8hpp.html" title="Header file for light scene example (unfinished)" alt="" coords="1084,155,1257,181"/>
+<area shape="rect" id="node44" href="$random__scene_8hpp.html" title="Header file for random scene example (unfinished)" alt="" coords="815,155,1009,181"/>
+<area shape="rect" id="node3" title=" " alt="" coords="415,155,489,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="513,155,588,181"/>
+<area shape="rect" id="node5" title=" " alt="" coords="133,155,192,181"/>
+<area shape="rect" id="node6" title=" " alt="" coords="267,155,391,181"/>
+<area shape="rect" id="node7" href="$vec3_8hpp.html" title="Custom 3D vector class for points, colours and rays." alt="" coords="585,528,666,555"/>
+<area shape="rect" id="node8" title=" " alt="" coords="308,603,388,629"/>
+<area shape="rect" id="node9" href="$utilities_8hpp.html" title="All the random functionality I am too lazy to organize elsewhere." alt="" coords="576,603,675,629"/>
+<area shape="rect" id="node10" title=" " alt="" coords="419,677,482,704"/>
+<area shape="rect" id="node11" title=" " alt="" coords="506,677,571,704"/>
+<area shape="rect" id="node12" title=" " alt="" coords="596,677,655,704"/>
+<area shape="rect" id="node13" title=" " alt="" coords="679,677,756,704"/>
+<area shape="rect" id="node14" title=" " alt="" coords="781,677,843,704"/>
+<area shape="rect" id="node16" title=" " alt="" coords="43,155,109,181"/>
+<area shape="rect" id="node18" href="$hit_8hpp.html" title="Abstract object that can be hit by a ray." alt="" coords="2001,304,2068,331"/>
+<area shape="rect" id="node19" href="$bounding__box_8hpp.html" title="Bounding box object, used to compute BVH tree." alt="" coords="665,379,807,405"/>
+<area shape="rect" id="node20" title=" " alt="" coords="707,453,767,480"/>
+<area shape="rect" id="node21" href="$ray_8hpp.html" title="The ray object for our tracing algorithm." alt="" coords="568,453,683,480"/>
+<area shape="rect" id="node25" href="$diffuse_8hpp.html" title="Object for diffuse (random) scattering. Subclass of material." alt="" coords="855,229,1015,256"/>
+<area shape="rect" id="node29" href="$diffuse__light_8hpp.html" title="Emissive diffuse light material." alt="" coords="1390,229,1586,256"/>
+<area shape="rect" id="node30" href="$glass_8hpp.html" title="A glass object that refracts/reflects using Snell&#39;s Law." alt="" coords="501,229,651,256"/>
+<area shape="rect" id="node31" href="$metal_8hpp.html" title="Reflective surface, with additional fuzzy scattering." alt="" coords="676,229,831,256"/>
+<area shape="rect" id="node32" href="$bvh_8hpp.html" title="Class for our Bounding Volume Hierarchy. Acts as both tree and root." alt="" coords="351,229,476,256"/>
+<area shape="rect" id="node34" href="$cube_8hpp.html" title="Cube object made of rectangles." alt="" coords="1745,155,1877,181"/>
+<area shape="rect" id="node36" href="$iso__fog_8hpp.html" title="Isotropically scattering fog object." alt="" coords="1982,155,2130,181"/>
+<area shape="rect" id="node38" href="$moving__sphere_8hpp.html" title="Sphere object moving, for motion blur." alt="" coords="1610,229,1811,256"/>
+<area shape="rect" id="node39" href="$sphere_8hpp.html" title="Sphere object to be rendered." alt="" coords="1221,229,1366,256"/>
+<area shape="rect" id="node40" href="$translation_8hpp.html" title="Class for translation of a hittable object." alt="" coords="2217,229,2388,256"/>
+<area shape="rect" id="node41" href="$y__rotation_8hpp.html" title="Class for rotation of object around the y axis." alt="" coords="2255,155,2422,181"/>
+<area shape="rect" id="node42" href="$checker_8hpp.html" title="Two color checkered texture." alt="" coords="1039,229,1196,256"/>
+<area shape="rect" id="node26" href="$material_8hpp.html" title="Base class for materials." alt="" coords="791,304,897,331"/>
+<area shape="rect" id="node27" href="$solid_8hpp.html" title="Solid one color texture." alt="" coords="1287,304,1425,331"/>
+<area shape="rect" id="node28" href="$texture_8hpp.html" title="Bass class for textures." alt="" coords="1069,379,1166,405"/>
+<area shape="rect" id="node33" title=" " alt="" coords="451,304,536,331"/>
+<area shape="rect" id="node35" href="$rectangle_8hpp.html" title="Rectangular plane object to be rendered." alt="" coords="1835,229,1946,256"/>
+<area shape="rect" id="node37" href="$isotropic_8hpp.html" title="Isotropic fog material." alt="" coords="1970,229,2142,256"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="include/objects/moving_sphere.hpp" name="include/objects/moving_sphere.hpp">
+<area shape="rect" id="node1" title="Sphere object moving, for motion blur." alt="" coords="275,5,449,47"/>
+<area shape="rect" id="node2" href="$comb__scene_8hpp.html" title="Header file for Combined scene example (unfinished)" alt="" coords="5,95,164,136"/>
+<area shape="rect" id="node3" href="$cornell__box_8hpp.html" title="Header file for cornell box scene examples (unfinished)" alt="" coords="188,95,355,136"/>
+<area shape="rect" id="node5" href="$light__scene_8hpp.html" title="Header file for light scene example (unfinished)" alt="" coords="379,95,529,136"/>
+<area shape="rect" id="node6" href="$random__scene_8hpp.html" title="Header file for random scene example (unfinished)" alt="" coords="553,95,725,136"/>
+<area shape="rect" id="node4" href="$main_8cpp.html" title="Main file for Serial ray tracer project." alt="" coords="413,184,495,211"/>
+</map>
