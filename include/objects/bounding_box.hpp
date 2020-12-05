@@ -1,34 +1,62 @@
-#ifndef INCLUDE_OBJECTS_BOUNDING_BOX_HPP_
-#define INCLUDE_OBJECTS_BOUNDING_BOX_HPP_
+/**
+ * @file bounding_box.hpp
+ * @author Dylan Bassi (bassidj@mcmaster.ca)
+ * @brief Bounding box object, used to compute BVH tree
+ * @version 0.1
+ * @date 2020-12-04
+ *
+ * @copyright Copyright (c) 2020
+ *
+ */
+#pragma once
 
-#include <cmath>
 #include <utility>
-#include "hit.hpp"
 #include "render/ray.hpp"
-#include "vec3.hpp"
 
+/**
+ * @brief Bounding box object to reduce hit computation time
+ *
+ * @tparam T Datatype to be used (e.g float, double)
+ */
 template <typename T>
 class BB {
  public:
+  /**
+   * @brief Construct an uninitialized BB object
+   *
+   */
   BB() {}
+  /**
+   * @brief Construct a new BB object
+   *
+   * @param min Lower left boundary
+   * @param max Upper Right boundary
+   */
   BB(const point3<T>& min, const point3<T> max) : min_(min), max_(max) {}
 
+  /**
+   * @brief Return the minimum boundary point
+   *
+   * @return point3<T> Minimum boundary point
+   */
   point3<T> min() const { return min_; }
+  /**
+   * @brief Return the maximum boundary point
+   *
+   * @return point3<T> Maximum boundary point
+   */
   point3<T> max() const { return max_; }
 
-  // Kensler's method
-#ifdef KENSLER
+  /**
+   * @brief Compute whether ray intersects the bounding box
+   *
+   * @param r Ray to compute
+   * @param t_min Initial shutter time
+   * @param t_max Final shutter time
+   * @return true True if object is hit
+   * @return false False if object is not hit
+   */
   bool is_hit(const ray<T>& r, const T& t_min, const T& t_max) const {
-    // FIXME: I had issues with the bounding boxes tracking motion blur
-    // I think I need to make a t_min/max variable and store it to get both
-    // speed and accuracy in this calculation
-    // -> produces -Wunused error
-    // Right now I'm over estimating the area to calc (providing little speedup
-    // w/ motion blur on)
-    // TODO: Add a compilation toggle for MB?
-    // This method over calcs, but is fast w/o motion blur (i.e no moving
-    // spheres)
-    //      -> I expect to see issues with my 2D objects...
     T ti = t_min;
     T tf = t_max;
     for (int i = 0; i < 3; i++) {
@@ -45,29 +73,12 @@ class BB {
     }
     return true;
   }
-#else
-  // This method is fast, but won't track MB correctly
-  // ->Underlying algo is slower, but lack of MB makes it faster
-  bool is_hit(const ray<T>& r, const T& t_min, const T& t_max) const {
-    T ti = t_min;
-    T tf = t_max;
-    for (int i = 0; i < 3; i++) {
-      T t0 = fmin((min_[i] - r.origin()[i]) / r.direction()[i],
-                  (max_[i] - r.origin()[i]) / r.direction()[i]);
-      T t1 = fmax((min_[i] - r.origin()[i]) / r.direction()[i],
-                  (max_[i] - r.origin()[i]) / r.direction()[i]);
 
-      ti = fmax(t0, ti);
-      tf = fmin(t1, tf);
-
-      if (tf <= ti)
-        return false;
-    }
-    return true;
-  }
-#endif  // End of kensler section
-
-  // Return which axis is longest
+  /**
+   * @brief Return the longest axis
+   *
+   * @return int Index of longest axis
+   */
   int axis() const {
     T x = max_.getX() - min_.getX();
     T y = max_.getY() - min_.getY();
@@ -81,6 +92,11 @@ class BB {
       return 2;
   }
 
+  /**
+   * @brief Return the area of the bounding box
+   *
+   * @return T Area of bounding box
+   */
   T area() const {
     T x = max_.getX() - min_.getX();
     T y = max_.getY() - min_.getY();
@@ -89,10 +105,26 @@ class BB {
   }
 
  private:
+  /**
+   * @brief Minimum boundary point
+   *
+   */
   point3<T> min_;
+  /**
+   * @brief Maximum boundary point
+   *
+   */
   point3<T> max_;
 };
 
+/**
+ * @brief Generate a new bounding box containing two input boxes
+ *
+ * @tparam T Datatype to be used (e.g float, double)
+ * @param bb0 First bounding box
+ * @param bb1 Second bounding box
+ * @return BB<T> Bounding box containing both input boxes
+ */
 template <typename T>
 BB<T> surround_box(BB<T> bb0, BB<T> bb1) {
   vec3<T> small(fmin(bb0.min().getX(), bb1.min().getX()),
@@ -104,5 +136,3 @@ BB<T> surround_box(BB<T> bb0, BB<T> bb1) {
 
   return BB<T>(small, big);
 }
-
-#endif  // INCLUDE_OBJECTS_BOUNDING_BOX_HPP_

@@ -1,38 +1,89 @@
-// The idea here is that we can just store objects we want to hit in a list
-// This allows our abstraction of objects that can be hit become useful
-// ->Just store everything we can hit in a list
-#ifndef INCLUDE_OBJECTS_HIT_LIST_HPP_
-#define INCLUDE_OBJECTS_HIT_LIST_HPP_
+/**
+ * @file hit_list.hpp
+ * @author Dylan Bassi (bassidj@mcmaster.ca)
+ * @brief List of hittable objects
+ * @details The idea here is that we can just store objects we want to hit in a
+ * list. This allows our abstraction of objects that can be hit become useful
+ * ->Just store everything we can hit in a list
+ * @version 0.1
+ * @date 2020-12-04
+ *
+ * @copyright Copyright (c) 2020
+ *
+ */
 
-// We want shared pointers so we can share data like materials
-#include <memory>
-#include <vector>
+#pragma once
+
 #include "hit.hpp"
-#include "utilities.hpp"
 
+/**
+ * @brief List of hittable objects
+ *
+ * @tparam T Datatype to be used
+ */
 template <typename T>
 class hit_list : public hit<T> {
  public:
+  /**
+   * @brief Construct an unitialized hit list object
+   *
+   */
   hit_list() {}
-  // If we have an object, lets initialize with it
+  /**
+   * @brief Construct a new hit list object with one object
+   *
+   * @param obj Object to add to list
+   */
   explicit hit_list(std::shared_ptr<hit<T>> obj) { add(obj); }
-  // Or let's pass lists to lists
+  /**
+   * @brief Construct a new hit list object from a hit list
+   *
+   * @param hit_l Hit list to pass into new list
+   */
   explicit hit_list(std::shared_ptr<hit_list<T>> hit_l) : obj_list(hit_l) {}
 
-  // Append object to our list
+  /**
+   * @brief Append object to the hit list
+   *
+   * @param obj Object to add to list
+   */
   void add(std::shared_ptr<hit<T>> obj) { obj_list.push_back(obj); }
-  // Clear the object list
+  /**
+   * @brief Clear the object list
+   *
+   */
   void clear() { obj_list.clear(); }
-  // Return size of object list
+  /**
+   * @brief Return the size of the hit list
+   *
+   * @return T Datatype to be used
+   */
   T size() const { return obj_list.size(); }
-  // Return object list
+
+  /**
+   * @brief Return the objects in the hist list
+   *
+   * @return std::vector<std::shared_ptr<hit<T>>> Vector of objects
+   */
   std::vector<std::shared_ptr<hit<T>>> objects() const { return obj_list; }
 
-  // Overriding our base function
+  /**
+   * @brief Compute whether ray intersects the hit list
+   *
+   * @return true Returns true if object is hit
+   * @return false Returns true if objects is hit
+   */
   bool is_hit(const ray<T>&, const T&, const T&, hit_rec<T>&) const override;
-  // Overriding our base function
-  // -If obj_list is empty returns false
-  // -
+
+  /**
+   * @brief Whether we are in the bounding box
+   *
+   * @param t0 Initial shutter time
+   * @param t1 Final shutter time
+   * @param out Bounding box of cube
+   * @return true True if we are in the hit list bounding box
+   * @return false False if we are outside of the hit list bounding box
+   */
   bool bound_box(const T& t0, const T& t1, BB<T>& out) const override {
     if (obj_list.empty())
       return false;
@@ -50,12 +101,25 @@ class hit_list : public hit<T> {
     return true;
   }
 
-  // Not sure if I can make this private and do what I want with it
-  // TODO: look into making this private -> friend?
  private:
+  /**
+   * @brief Vector of objects in the hit list
+   *
+   */
   std::vector<std::shared_ptr<hit<T>>> obj_list;
 };
 
+/**
+ * @brief Compute whether the ray intersects the hit list
+ *
+ * @tparam T Datatype to be used
+ * @param r Ray to compute
+ * @param t_min Initial shutter time
+ * @param t_max Final shutter time
+ * @param rec Hit record of ray
+ * @return true Returns true if object is hit
+ * @return false Returns true if objects is hit
+ */
 template <typename T>
 bool hit_list<T>::is_hit(const ray<T>& r,
                          const T& t_min,
@@ -75,5 +139,3 @@ bool hit_list<T>::is_hit(const ray<T>& r,
   }
   return hit_;
 }
-
-#endif  // INCLUDE_OBJECTS_HIT_LIST_HPP_

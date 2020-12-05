@@ -1,17 +1,42 @@
-// A moving_sphere we can render
-#ifndef INCLUDE_OBJECTS_MOVING_SPHERE_HPP_
-#define INCLUDE_OBJECTS_MOVING_SPHERE_HPP_
+/**
+ * @file moving_sphere.hpp
+ * @author Dylan Bassi (bassidj@mcmaster.ca)
+ * @brief Sphere object moving, for motion blur
+ * @version 0.1
+ * @date 2020-12-04
+ *
+ * @copyright Copyright (c) 2020
+ *
+ */
 
-#include "bounding_box.hpp"
+#pragma once
+
 #include "hit.hpp"
-#include "vec3.hpp"
 
 // Subclass of hit, moving_sphere
+/**
+ * @brief Moving sphere object, to render a sphere with motion blur
+ *
+ * @tparam T Datatype to be used (e.g float, double)
+ */
 template <typename T>
 class moving_sphere : public hit<T> {
  public:
+  /**
+   * @brief Construct an uninitialized moving sphere object
+   *
+   */
   moving_sphere() {}
-  // Assign center and radius of moving_sphere
+  /**
+   * @brief Construct a new moving sphere object
+   *
+   * @param cen0 Center of sphere at initial shutter time
+   * @param cen1 Center of sphere at final shutter time
+   * @param t0 Initial shutter time
+   * @param t1 Final shutter time
+   * @param r Radius of sphere
+   * @param m Material of sphere
+   */
   moving_sphere(const point3<T>& cen0,
                 const point3<T>& cen1,
                 const T& t0,
@@ -20,14 +45,38 @@ class moving_sphere : public hit<T> {
                 std::shared_ptr<material<T>> m)
       : mat(m), c0_(cen0), c1_(cen1), t0_(t0), t1_(t1), r_(r) {}
 
-  // Get the radius value
+  /**
+   * @brief Returns the radius of the sphere
+   *
+   * @return T Radius of the sphere
+   */
   T radius() const { return r_; }
-  // Get the center
+
+  /**
+   * @brief Returns the center of the sphere at a given time using linear
+   * interpolation
+   *
+   * @return point3<T> Center of the sphere at time t
+   */
   point3<T> center(const T&) const;
 
-  // We want to override the base function
+  /**
+   * @brief Returns whether a ray intersects the sphere
+   *
+   * @return true True if the sphere is hit
+   * @return false False if the sphere is not hit
+   */
   bool is_hit(const ray<T>&, const T&, const T&, hit_rec<T>&) const override;
 
+  /**
+   * @brief Returns whether we are in the bounding box
+   *
+   * @param t0 Initial shutter time
+   * @param t1 Final shutter time
+   * @param out The bounding box of the object
+   * @return true Always returns true
+   * @return false Never returns false
+   */
   bool bound_box(const T& t0, const T& t1, BB<T>& out) const override {
     BB<T> b0(center(t0) - vec3<T>(r_, r_, r_),
              center(t0) + vec3<T>(r_, r_, r_));
@@ -37,21 +86,53 @@ class moving_sphere : public hit<T> {
     return true;
   }
 
-  // We will store the center and radius privately
  private:
+  /**
+   * @brief Material of the sphere
+   *
+   */
   std::shared_ptr<material<T>> mat;
+  /**
+   * @brief Center of the sphere at initial and final shutter time
+   *
+   */
   point3<T> c0_, c1_;
+  /**
+   * @brief Initial and final shutter time
+   *
+   */
   T t0_, t1_;
+  /**
+   * @brief Radius of the sphere
+   *
+   */
   T r_;
 };
 
-// We need to know where the center is if it moves linearly
+/**
+ * @brief Returns the center of the sphere at a given time using linear
+ * interpolation
+ *
+ * @tparam T Datatype to be used (e.g float, double)
+ * @param t Time to compute center
+ * @return point3<T> Center of the sphere at a given time
+ */
 template <typename T>
 point3<T> moving_sphere<T>::center(const T& t) const {
   return c0_ + ((t - t0_) / (t1_ - t0_)) * (c1_ - c0_);
 }
 
-// Take in our ray, time frime
+/**
+ * @brief Returns whether a ray intersects the sphere
+ *
+ * @tparam T Datatype to be used (e.g float, double)
+ * @param r Ray to compute
+ * @param t_min Initial shutter time
+ * @param t_max Final shutter time
+ * @param rec Hit record of the ray
+ * @return true True if the sphere is hit
+ * @return false False if the sphere is not hit
+ */
 template <typename T>
 bool moving_sphere<T>::is_hit(const ray<T>& r,
                               const T& t_min,
@@ -87,5 +168,3 @@ bool moving_sphere<T>::is_hit(const ray<T>& r,
   rec.mat = mat;
   return true;
 }
-
-#endif  // INCLUDE_OBJECTS_MOVING_SPHERE_HPP_

@@ -1,17 +1,42 @@
-// An object for storing our camera data
-// There isn't too much going on here, just setting up the screen and camera
-// location/configuration
+/**
+ * @file camera.hpp
+ * @author Dylan Bassi (bassidj@mcmaster.ca)
+ * @brief Camera object to render scene from
+ * @details An object for storing our camera data. Contains the initialization
+ * of the camera and its configuration in the world.
+ * @version 0.1
+ * @date 2020-12-04
+ *
+ * @copyright Copyright (c) 2020
+ *
+ */
+
 // TODO: these parameters chould be in some sort of .yaml or something
-#ifndef INCLUDE_RENDER_CAMERA_HPP_
-#define INCLUDE_RENDER_CAMERA_HPP_
+#pragma once
 
 #include "ray.hpp"
-#include "utilities.hpp"
-#include "vec3.hpp"
 
+/**
+ * @brief The camera class
+ *
+ * @tparam T Datatype to be used (e.g float, double)
+ */
 template <typename T>
 class camera {
  public:
+  /**
+   * @brief Construct a new camera object
+   *
+   * @param from Point camera is looking from
+   * @param to Point camera is looking to
+   * @param vup Direction vector of vertical up
+   * @param fov Field of view
+   * @param ar Aspect ratio
+   * @param ap Aperture size
+   * @param focus Focal length
+   * @param t0 Initial shutter time
+   * @param t1 Final shutter time
+   */
   camera(const point3<T>& from,
          const point3<T>& to,
          const vec3<T>& vup,
@@ -43,6 +68,13 @@ class camera {
     r_ = ap / static_cast<T>(2);
   }
 
+  /**
+   * @brief Get the Ray object
+   *
+   * @param s u value of pixel
+   * @param t v value of pixel
+   * @return ray<T> Ray at (u,v)
+   */
   ray<T> getRay(const T& s, const T& t) const {
     vec3<T> rd = r_ * random_disk_hat<T>();
     vec3<T> off = u * rd.getX() + v * rd.getY();
@@ -53,12 +85,34 @@ class camera {
   }
 
  private:
+  /**
+   * @brief Origin of camera ray
+   *
+   */
   point3<T> o_;
+  /**
+   * @brief Lower left corner of camera view
+   *
+   */
   point3<T> llc_;
+  /**
+   * @brief Horizontal view
+   *
+   */
   vec3<T> hor_;
+  /**
+   * @brief Vertival view
+   *
+   */
   vec3<T> ver_;
+  /**
+   * @brief (u,v,w) values -> Texture mapped x,y,z
+   *
+   */
   vec3<T> u, v, w;
+  /**
+   * @brief Aperture radius, initial shutter time, final shutter time
+   *
+   */
   T r_, t0_, t1_;
 };
-
-#endif  // INCLUDE_RENDER_CAMERA_HPP_

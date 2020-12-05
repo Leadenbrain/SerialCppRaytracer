@@ -1,9 +1,14 @@
-#ifndef INCLUDE_SCENES_COMB_SCENE_HPP_
-#define INCLUDE_SCENES_COMB_SCENE_HPP_
-
-#include "materials/material.hpp"
-#include "utilities.hpp"
-#include "vec3.hpp"
+/**
+ * @file comb_scene.hpp
+ * @author Dylan Bassi (bassidj@mcmaster.ca)
+ * @brief Header file for Combined scene example (unfinished)
+ * @version 0.1
+ * @date 2020-12-04
+ *
+ * @copyright Copyright (c) 2020
+ *
+ */
+#pragma once
 
 #include "objects/hit_list.hpp"
 
@@ -15,11 +20,14 @@
 #include "objects/cube.hpp"
 #include "objects/iso_fog.hpp"
 #include "objects/moving_sphere.hpp"
-#include "objects/rectangle.hpp"
 #include "objects/sphere.hpp"
 #include "objects/translation.hpp"
 #include "objects/y_rotation.hpp"
 #include "textures/checker.hpp"
+
+#ifndef datatype
+#define datatype double
+#endif
 
 // Colours
 auto red = std::make_shared<diffuse<datatype>>(color<datatype>(.65, .05, .05));
@@ -37,10 +45,16 @@ auto mat_checker =
     std::make_shared<checker<datatype>>(color<datatype>(0.2, 0.3, 0.1),
                                         color<datatype>(0.9, 0.9, 0.9));
 
+/**
+ * @brief Construct a hit list containing our scene to render
+ *
+ * @return hit_list<datatype> Our combined scene to render
+ */
 hit_list<datatype> light_scene() {
   hit_list<datatype> floor;
 
-  auto mat_ground = std::make_shared<diffuse<T>>(color<T>(0.45, 0.36, 0.83));
+  auto mat_ground =
+      std::make_shared<diffuse<datatype>>(color<datatype>(0.45, 0.36, 0.83));
 
   const int n_box = 20;
   for (int i = 0; i < n_box; i++) {
@@ -70,5 +84,3 @@ hit_list<datatype> light_scene() {
 
   return objects;
 }
-
-#endif  // INCLUDE_SCENES_COMB_SCENE_HPP_

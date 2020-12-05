@@ -1,39 +1,98 @@
-// Class for making a rotated instace of an object around x-axis
-// Rather than actually moving the objects, we'll just move the rays
-// Pretty clever idea, still not sure how I feel about it compared to moving the
-// objects themselves in the scene
-// ->likely scales much better
-#ifndef INCLUDE_OBJECTS_X_ROTATION_HPP_
-#define INCLUDE_OBJECTS_X_ROTATION_HPP_
+/**
+ * @file x_rotation.hpp
+ * @author Dylan Bassi (bassidj@mcmaster.ca)
+ * @brief Class for rotation of object around the x axis
+ * @version 0.1
+ * @date 2020-12-04
+ *
+ * @copyright Copyright (c) 2020
+ *
+ */
+#pragma once
 
 #include "hit.hpp"
 
+/**
+ * @brief Object for rotation around the x axis
+ *
+ * @tparam T
+ */
 template <typename T>
 class x_rotation : public hit<T> {
  public:
+  /**
+   * @brief Construct an uninitialized x rotation object
+   *
+   */
   x_rotation();
+  /**
+   * @brief Construct a new x rotation object
+   *
+   * @param p Object to rotate
+   * @param t_deg Angle of rotation in degrees
+   */
   x_rotation(std::shared_ptr<hit<T>> p, const T& t_deg);
 
+  /**
+   * @brief Returns whether a ray intersects the rotated objected
+   *
+   * @param r Ray to compute
+   * @param t_min Initial shutter time
+   * @param t_max Final shutter time
+   * @param rec Hit record of the ray
+   * @return true True if the rotated object is hit
+   * @return false False if the rotated object is not hit
+   */
   bool is_hit(const ray<T>& r,
               const T& t_min,
               const T& t_max,
               hit_rec<T>& out) const override;
 
+  /**
+   * @brief Returns whether we are in the bounding box
+   *
+   * @param out The bounding box of the translated object
+   * @return true Returns true point is bounding box
+   * @return false Returns false if point is not in bounding box
+   */
   bool bound_box(const T&, const T&, BB<T>& out) const override {
     out = bound_;
     return box_bool;
   }
 
  private:
+  /**
+   * @brief Object to rotate
+   *
+   */
   std::shared_ptr<hit<T>> p_;
+  /**
+   * @brief Sine and cosine of the angle
+   *
+   */
   T sin_t, cos_t;
+  /**
+   * @brief Boolean for being inside the bounding box
+   *
+   */
   bool box_bool;
+  /**
+   * @brief Bounding box of rotated object
+   *
+   */
   BB<T> bound_;
 };
 
-// Apply rotation transformation
-// y' = cos(t)y - sin(t)z
-// z' = sin(t)y + cost(t)z
+/**
+ * @brief Construct a new x rotation<T>::x rotation object
+ * @details Apply rotation transformation:
+ * y' = cos(t)y - sin(t)z
+ * z' = sin(t)y + cos(t)z
+ *
+ * @tparam T Datatype to be used (e.g float, double)
+ * @param p Object to rotate
+ * @param t_deg Angle of rotation in degrees
+ */
 template <typename T>
 x_rotation<T>::x_rotation(std::shared_ptr<hit<T>> p, const T& t_deg) : p_(p) {
   T t_rad = deg_to_rad(t_deg);
@@ -67,7 +126,17 @@ x_rotation<T>::x_rotation(std::shared_ptr<hit<T>> p, const T& t_deg) : p_(p) {
   bound_ = BB<T>(min, max);
 }
 
-// We have to apply to rotation to the normal
+/**
+ * @brief
+ *
+ * @tparam T Datatype to use (e.g float, double)
+ * @param r Ray to compute
+ * @param t_min Initial shutter time
+ * @param t_max Final shutter time
+ * @param rec Hit record of the ray
+ * @return true True if the rotated object is hit
+ * @return false False if the rotated object is not hit
+ */
 template <typename T>
 bool x_rotation<T>::is_hit(const ray<T>& r,
                            const T& t_min,
@@ -102,5 +171,3 @@ bool x_rotation<T>::is_hit(const ray<T>& r,
 
   return true;
 }
-
-#endif  // INCLUDE_OBJECTS_X_ROTATION_HPP_

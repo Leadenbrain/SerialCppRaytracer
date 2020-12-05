@@ -1,11 +1,15 @@
-#ifndef INCLUDE_SCENES_LIGHT_SCENE_HPP_
-#define INCLUDE_SCENES_LIGHT_SCENE_HPP_
+/**
+ * @file light_scene.hpp
+ * @author Dylan Bassi (bassidj@mcmaster.ca)
+ * @brief Header file for light scene example (unfinished)
+ * @version 0.1
+ * @date 2020-12-04
+ *
+ * @copyright Copyright (c) 2020
+ *
+ */
 
-#include "materials/material.hpp"
-#include "utilities.hpp"
-#include "vec3.hpp"
-
-#include "objects/hit_list.hpp"
+#pragma once
 
 #include "materials/diffuse.hpp"
 #include "materials/diffuse_light.hpp"
@@ -17,6 +21,12 @@
 #include "objects/sphere.hpp"
 #include "textures/checker.hpp"
 
+/**
+ * @brief Construct a scene with metal and glass sphere, with spherical and
+ * rectangular lights
+ *
+ * @return hit_list<datatype> Hit list containing the scene.
+ */
 hit_list<datatype> light_scene() {
   hit_list<datatype> world;
 
@@ -53,5 +63,3 @@ hit_list<datatype> light_scene() {
   return hit_list<datatype>(
       std::make_shared<bvh_node<datatype>>(world, 0.0, 1.0));
 }
-
-#endif  // INCLUDE_SCENES_LIGHT_SCENE_HPP_

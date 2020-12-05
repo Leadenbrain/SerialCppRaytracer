@@ -1,11 +1,15 @@
-#ifndef INCLUDE_SCENES_RANDOM_SCENE_HPP_
-#define INCLUDE_SCENES_RANDOM_SCENE_HPP_
+/**
+ * @file random_scene.hpp
+ * @author Dylan Bassi (bassidj@mcmaster.ca)
+ * @brief Header file for random scene example (unfinished)
+ * @version 0.1
+ * @date 2020-12-04
+ *
+ * @copyright Copyright (c) 2020
+ *
+ */
 
-#include "materials/material.hpp"
-#include "utilities.hpp"
-#include "vec3.hpp"
-
-#include "objects/hit_list.hpp"
+#pragma once
 
 #include "materials/diffuse.hpp"
 #include "materials/glass.hpp"
@@ -15,6 +19,11 @@
 #include "objects/sphere.hpp"
 #include "textures/checker.hpp"
 
+/**
+ * @brief Construct our random scene
+ *
+ * @return hit_list<datatype> Hit list containing the random scene
+ */
 hit_list<datatype> random_scene() {
   hit_list<datatype> world;
 
@@ -77,5 +86,3 @@ hit_list<datatype> random_scene() {
       std::make_shared<bvh_node<datatype>>(world, 0.0, 0.1));
   // return world;
 }
-
-#endif  // INCLUDE_SCENES_RANDOM_SCENE_HPP_

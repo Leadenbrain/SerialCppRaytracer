@@ -1,17 +1,21 @@
-// Let user define precision
-// Default to double
+/**
+ * @file main.cpp
+ * @author Dylan Bassi (bassidj@mcmaster.ca)
+ * @brief Main file for Serial ray tracer project
+ * @version 0.1
+ * @date 2020-12-04
+ *
+ * @copyright Copyright (c) 2020
+ *
+ */
 #ifndef datatype
 #define datatype double
 #endif
 
-#include <iostream>
 #include "config_parser.hpp"
 #include "timer.hpp"
-#include "utilities.hpp"
 
 #include "objects/hit_list.hpp"
-#include "render/ray.hpp"
-#include "vec3.hpp"
 
 #include "render/camera.hpp"
 #include "render/color.hpp"
@@ -20,9 +24,13 @@
 #include "scenes/light_scene.hpp"
 #include "scenes/random_scene.hpp"
 
-#include "objects/bounding_box.hpp"
-#include "objects/bvh.hpp"
-
+/**
+ * @brief Main function to perform scene generation and rendering
+ *
+ * @param argc Number of arguments
+ * @param argv Vector of arguments
+ * @return int Success/Error code
+ */
 int main(int argc, char* argv[]) {
   std::string file_name;
   if (argc < 2)
@@ -37,7 +45,7 @@ int main(int argc, char* argv[]) {
   opts = parser.data();
   vec_opts = parser.vec_data();
 
-  const datatype aspect{opts["aspect"]};
+  const datatype aspect{static_cast<datatype>(opts["aspect"])};
   const int width{static_cast<int>(opts["width"])};
   const int height{static_cast<int>(width / aspect) + 1};
   const int ns{static_cast<int>(opts["ns"])};
@@ -46,7 +54,7 @@ int main(int argc, char* argv[]) {
 
   // World
   timer t_scene;
-  hit_list<datatype> world = standard_cornell_box();
+  hit_list<datatype> world = fog_cornell_box();
   t_scene.end();
   double t_end = t_scene.seconds();
   if (t_end > 1.0)
@@ -72,6 +80,34 @@ int main(int argc, char* argv[]) {
   //            -> assign parallelism from this func?
   // Let's time this, it's not going to be pretty
   timer t_render;
+
+  //   color<double>* pixels = new color<double>[width * height];
+  //   color<double> pix = color<double>(0, 0, 0);
+  // #pragma omp parallel for private(pix)
+  //   for (int i = 0; i < width * height; i++) {
+  //     // pixels[i] = color<double>(0, 0, 0);
+  //     // std::cerr << "\rLines remaining: " << height - ((i - (i % width)) /
+  //     // width)
+  //     //           << " " << std::flush;
+  //     for (int s = 0; s < ns; ++s) {
+  //       int x, y;
+  //       x = i % width;
+  //       y = ((i - (i % width)) / width);
+  //       datatype u = static_cast<datatype>(x + random_double()) / (width -
+  //       1); datatype v = static_cast<datatype>(y + random_double()) / (height
+  //       - 1); ray<datatype> r = cam.getRay(u, v); pix += ray_color(r, bg,
+  //       world, max_depth); pixels[i] = pix;
+  //     }
+  //     printf("HERE %d\n", i);
+  //   }
+
+  //   for (int j = height - 1; j >= 0; j--) {
+  //     for (int i = 0; i < width; i++) {
+  //       size_t px = j * width + i;
+  //       write_color<datatype>(std::cout, pixels[px], ns);
+  //     }
+  //   }
+
   // Print out r,g,b values for our scene
   for (int j = height - 1; j >= 0; --j) {
     //   Use std::cerr to print to terminal while writing file

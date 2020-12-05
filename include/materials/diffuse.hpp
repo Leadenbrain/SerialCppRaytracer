@@ -1,22 +1,54 @@
-// Subclass of material for diffuse objects
-// This corresponds to objects which randomly scatter light on impact
-// This is likely the majority of objects
-#ifndef INCLUDE_MATERIALS_DIFFUSE_HPP_
-#define INCLUDE_MATERIALS_DIFFUSE_HPP_
+/**
+ * @file diffuse.hpp
+ * @author Dylan Bassi (bassidj@mcmaster.ca)
+ * @brief Object for diffuse (random) scattering. Subclass of material
+ * @version 0.1
+ * @date 2020-12-04
+ *
+ * @copyright Copyright (c) 2020
+ *
+ */
+
+#pragma once
 
 #include "material.hpp"
 #include "textures/solid.hpp"
 
 // Make a public subclass of material
+/**
+ * @brief Object for diffuse reflection of light; subclass of material
+ *
+ * @tparam T Datatype to be used (e.g float, double)
+ */
 template <typename T>
 class diffuse : public material<T> {
  public:
-  // Assign the color on initializing
-  explicit diffuse(const color<T> c)
+  /**
+   * @brief Construct a new diffuse object using a color
+   *
+   * @param c Color of object
+   */
+  explicit diffuse(const color<T>& c)
       : diff_col(std::make_shared<solid<T>>(c)) {}
+  /**
+   * @brief Construct a new diffuse object using a texture
+   *
+   * @param c Texture of object
+   */
   explicit diffuse(std::shared_ptr<uvTex<T>> c) : diff_col(c) {}
 
   // Override our scatter func
+  /**
+   * @brief Overidden scatter function.
+   * @details Scatters the object into a random direction
+   *
+   * @param r Ray to compute
+   * @param rec Hit record of ray
+   * @param att Attenuation
+   * @param scat Scattering color
+   * @return true This object always scatters (always occurs)
+   * @return false This object always scatters (never occurs)
+   */
   bool scatter(const ray<T>& r,
                const hit_rec<T>& rec,
                color<T>& att,
@@ -38,5 +70,3 @@ class diffuse : public material<T> {
  private:
   std::shared_ptr<uvTex<T>> diff_col;
 };
-
-#endif  // INCLUDE_MATERIALS_DIFFUSE_HPP_

@@ -1,16 +1,45 @@
-// A glass object that will refract using snell's law
-#ifndef INCLUDE_MATERIALS_GLASS_HPP_
-#define INCLUDE_MATERIALS_GLASS_HPP_
+/**
+ * @file glass.hpp
+ * @author Dylan Bassi (bassidj@mcmaster.ca)
+ * @brief A glass object that refracts/reflects using Snell's Law
+ * @version 0.1
+ * @date 2020-12-04
+ *
+ * @copyright Copyright (c) 2020
+ *
+ */
+
+#pragma once
 
 #include "material.hpp"
 
-// Make a public subclass of material
+/**
+ * @brief Glass subclass of material
+ *
+ * @tparam T Datatype to be used (e.g float, double)
+ */
 template <typename T>
 class glass : public material<T> {
  public:
-  // Assign the index of refraction on initialization
-  explicit glass(const T index) : eta_(index) {}
+  /**
+   * @brief Construct a new glass object
+   *
+   * @param index Index of refraction
+   */
+  explicit glass(const T& index) : eta_(index) {}
   // Override our scatter func
+  /**
+   * @brief Overidden scatter function.
+   * @details Determines whether there is total internal reflection or
+   * refraction using Schlick approximation.
+   *
+   * @param r Ray to compute
+   * @param rec Hit record of ray
+   * @param att Attenuation
+   * @param scat Scattering color
+   * @return true This object always scatters (always occurs)
+   * @return false This object always scatters (never occurs)
+   */
   bool scatter(const ray<T>& r,
                const hit_rec<T>& rec,
                color<T>& att,
@@ -40,13 +69,22 @@ class glass : public material<T> {
   }
 
  private:
+  /**
+   * @brief Index of refraction
+   *
+   */
   T eta_;
 
-  static T schlick(T cos, T eta) {
+  /**
+   * @brief Schlick approximation for total internal reflection
+   *
+   * @param cos Cos of theta
+   * @param eta Index of refraction
+   * @return T Approximated refractive index
+   */
+  static T schlick(const T& cos, const T& eta) {
     T eta0 = (1 - eta) / (1 + eta);
     eta0 *= eta0;
     return eta0 + (1 - eta0) * std::pow((1 - cos), 5);
   }
 };
-
-#endif  // INCLUDE_MATERIALS_GLASS_HPP_
