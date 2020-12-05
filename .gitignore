@@ -2,4 +2,6 @@
 *.png
 *.ppm
 .vscode/
-
+doc/*
+build/*
+*.zip
