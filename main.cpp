@@ -12,6 +12,8 @@
 #define datatype double
 #endif
 
+#include <omp.h>
+
 #include "config_parser.hpp"
 #include "timer.hpp"
 
@@ -20,9 +22,10 @@
 #include "render/camera.hpp"
 #include "render/color.hpp"
 
-#include "scenes/cornell_box.hpp"
-#include "scenes/light_scene.hpp"
-#include "scenes/random_scene.hpp"
+#include "scenes/comb_scene.hpp"
+// #include "scenes/cornell_box.hpp"
+// #include "scenes/light_scene.hpp"
+// #include "scenes/random_scene.hpp"
 
 /**
  * @brief Main function to perform scene generation and rendering
@@ -54,7 +57,8 @@ int main(int argc, char* argv[]) {
 
   // World
   timer t_scene;
-  hit_list<datatype> world = fog_cornell_box();
+  unsigned int numb = 123;
+  hit_list<datatype> world = comb_scene(&numb);
   t_scene.end();
   double t_end = t_scene.seconds();
   if (t_end > 1.0)
@@ -81,54 +85,61 @@ int main(int argc, char* argv[]) {
   // Let's time this, it's not going to be pretty
   timer t_render;
 
-  //   color<double>* pixels = new color<double>[width * height];
-  //   color<double> pix = color<double>(0, 0, 0);
-  // #pragma omp parallel for private(pix)
-  //   for (int i = 0; i < width * height; i++) {
-  //     // pixels[i] = color<double>(0, 0, 0);
-  //     // std::cerr << "\rLines remaining: " << height - ((i - (i % width)) /
-  //     // width)
-  //     //           << " " << std::flush;
-  //     for (int s = 0; s < ns; ++s) {
-  //       int x, y;
-  //       x = i % width;
-  //       y = ((i - (i % width)) / width);
-  //       datatype u = static_cast<datatype>(x + random_double()) / (width -
-  //       1); datatype v = static_cast<datatype>(y + random_double()) / (height
-  //       - 1); ray<datatype> r = cam.getRay(u, v); pix += ray_color(r, bg,
-  //       world, max_depth); pixels[i] = pix;
-  //     }
-  //     printf("HERE %d\n", i);
-  //   }
+  color<double>* pixels = new color<double>[width * height];
+#pragma omp parallel for
+  for (int i = 0; i < width * height; i++) {
+    unsigned int my_seed = 123;
+    color<double> pix = color<double>(0, 0, 0);
+    // std::cerr << "\rLines remaining: " << height - ((i - (i % width)) /
+    // width)
+    //           << " " << std::flush;
+    for (int s = 0; s < ns; ++s) {
+      int x, y;
+      x = i % width;
+      y = ((i - (i % width)) / width);
+      datatype u =
+          static_cast<datatype>(x + (rand_r(&my_seed) / (RAND_MAX + 1.0))) /
+          (width - 1);
+      datatype v =
+          static_cast<datatype>(y + (rand_r(&my_seed) / (RAND_MAX + 1.0))) /
+          (height - 1);
+      ray<datatype> r = cam.getRay(u, v, &numb);
+      pix += ray_color(r, bg, world, max_depth,
+                       &numb);  // color<double>(0.01, 0.08, 0.01);
+    }
+    pixels[i] = pix;
+    // printf("HERE %d\n", i);
+  }
 
-  //   for (int j = height - 1; j >= 0; j--) {
-  //     for (int i = 0; i < width; i++) {
-  //       size_t px = j * width + i;
-  //       write_color<datatype>(std::cout, pixels[px], ns);
-  //     }
-  //   }
-
-  // Print out r,g,b values for our scene
-  for (int j = height - 1; j >= 0; --j) {
-    //   Use std::cerr to print to terminal while writing file
-    std::cerr << "\rLines remaining: " << j << " " << std::flush;
-    for (int i = 0; i < width; ++i) {
-      color<datatype> px(0, 0, 0);
-      // #pragma omp parallel
-      // {
-      // Let's try something quick while I work, bad renders are ok for now
-      // #pragma omp for reduction(+ : px)
-      // ->this reduction is messy to code, do by hand instead
-      for (int s = 0; s < ns; ++s) {
-        datatype u = static_cast<datatype>(i + random_double()) / (width - 1);
-        datatype v = static_cast<datatype>(j + random_double()) / (height - 1);
-        ray<datatype> r = cam.getRay(u, v);
-        px += ray_color(r, bg, world, max_depth);
-        // }
-      }
-      write_color<datatype>(std::cout, px, ns);
+  for (int j = height - 1; j >= 0; j--) {
+    for (int i = 0; i < width; i++) {
+      size_t px = j * width + i;
+      write_color<datatype>(std::cout, pixels[px], ns);
     }
   }
+
+  // Print out r,g,b values for our scene
+  // for (int j = height - 1; j >= 0; --j) {
+  //   //   Use std::cerr to print to terminal while writing file
+  //   std::cerr << "\rLines remaining: " << j << " " << std::flush;
+  //   for (int i = 0; i < width; ++i) {
+  //     color<datatype> px(0, 0, 0);
+  //     // #pragma omp parallel
+  //     // {
+  //     // Let's try something quick while I work, bad renders are ok for now
+  //     // #pragma omp for reduction(+ : px)
+  //     // ->this reduction is messy to code, do by hand instead
+  //     for (int s = 0; s < ns; ++s) {
+  //       datatype u = static_cast<datatype>(i + random_double()) / (width -
+  //       1); datatype v = static_cast<datatype>(j + random_double()) / (height
+  //       - 1); ray<datatype> r = cam.getRay(u, v); px += ray_color(r, bg,
+  //       world, max_depth);
+  //       // }
+  //     }
+  //     write_color<datatype>(std::cout, px, ns);
+  //   }
+  // }
+
   t_render.end();
   std::cerr << "\nFinished Render in " << t_render.seconds() / 60
             << " minutes.\n";

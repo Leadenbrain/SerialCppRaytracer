@@ -48,7 +48,8 @@ class translate : public hit<T> {
   bool is_hit(const ray<T>& r,
               const T& t_min,
               const T& t_max,
-              hit_rec<T>& rec) const override {
+              hit_rec<T>& rec,
+              unsigned int*) const override {
     ray<T> trans_r(r.origin() - disp_, r.direction(), r.time());
     if (!p_->is_hit(trans_r, t_min, t_max, rec))
       return false;

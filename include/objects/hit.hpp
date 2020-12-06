@@ -60,7 +60,11 @@ class hit {
    * @return true True if the ray hits the object
    * @return false False if the ray does not hit the object
    */
-  virtual bool is_hit(const ray<T>&, const T&, const T&, hit_rec<T>&) const = 0;
+  virtual bool is_hit(const ray<T>&,
+                      const T&,
+                      const T&,
+                      hit_rec<T>&,
+                      unsigned int*) const = 0;
   /**
    * @brief Returns if we are in an object's bounding box
    *

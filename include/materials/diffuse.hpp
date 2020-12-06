@@ -52,9 +52,10 @@ class diffuse : public material<T> {
   bool scatter(const ray<T>& r,
                const hit_rec<T>& rec,
                color<T>& att,
-               ray<T>& scat) const override {
+               ray<T>& scat,
+               unsigned int* seed) const override {
     // We want to randomly scatter
-    vec3<T> scat_dir = rec.n + random_unit_v<T>();
+    vec3<T> scat_dir = rec.n + random_unit_v<T>(seed);
 
     // Get redundant scatters
     if (scat_dir.near_null())

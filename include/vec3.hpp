@@ -145,8 +145,8 @@ class vec3 {
    *
    * @return vec3 Random vector
    */
-  static vec3 random() {
-    return vec3(random_double(), random_double(), random_double());
+  static vec3 random(unsigned int* seed) {
+    return vec3(random_double(seed), random_double(seed), random_double(seed));
   }
 
   /**
@@ -156,9 +156,9 @@ class vec3 {
    * @param t2 Upper bound for random component
    * @return vec3 Vector with random entries as components
    */
-  static vec3 random(const T& t1, const T& t2) {
-    return vec3(random_double(t1, t2), random_double(t1, t2),
-                random_double(t1, t2));
+  static vec3 random(const T& t1, const T& t2, unsigned int* seed) {
+    return vec3(random_double(t1, t2, seed), random_double(t1, t2, seed),
+                random_double(t1, t2, seed));
   }
 
  private:
@@ -338,11 +338,11 @@ inline vec3<T> refract(const vec3<T>& uv, const vec3<T>& n, T etai_over_etat) {
  * @return vec3<T> Random unit vector in a disk
  */
 template <typename T>
-inline vec3<T> random_disk_hat() {
+inline vec3<T> random_disk_hat(unsigned int* seed) {
   while (true) {
-    vec3<T> p =
-        vec3<T>(random_double(static_cast<T>(-1.0), static_cast<T>(1.0)),
-                random_double(static_cast<T>(-1.0), static_cast<T>(1.0)), 0);
+    vec3<T> p = vec3<T>(
+        random_double(static_cast<T>(-1.0), static_cast<T>(1.0), seed),
+        random_double(static_cast<T>(-1.0), static_cast<T>(1.0), seed), 0);
     if (p.norm_sqr() >= 1)
       continue;
     return p;
@@ -356,9 +356,10 @@ inline vec3<T> random_disk_hat() {
  * @return vec3<T> Random vector in a sphere
  */
 template <typename T>
-inline vec3<T> random_sphere() {
+inline vec3<T> random_sphere(unsigned int* seed) {
   while (true) {
-    vec3<T> p = vec3<T>::random(static_cast<T>(-1.0), static_cast<T>(1.0));
+    vec3<T> p =
+        vec3<T>::random(static_cast<T>(-1.0), static_cast<T>(1.0), seed);
     if (p.norm_sqr() >= 1)
       continue;
     return p;
@@ -372,8 +373,8 @@ inline vec3<T> random_sphere() {
  * @return vec3<T> Random unit vector in spherical coordinates
  */
 template <typename T>
-inline vec3<T> random_unit_v() {
-  return unit_v<T>(random_sphere<T>());
+inline vec3<T> random_unit_v(unsigned int* seed) {
+  return unit_v<T>(random_sphere<T>(seed));
 }
 
 /**
@@ -384,8 +385,8 @@ inline vec3<T> random_unit_v() {
  * @return vec3<T> Random vector in hemisphere
  */
 template <typename T>
-inline vec3<T> random_half_sphere(const vec3<T>& n) {
-  vec3<T> in_sphere = random_sphere<T>();
+inline vec3<T> random_half_sphere(const vec3<T>& n, unsigned int* seed) {
+  vec3<T> in_sphere = random_sphere<T>(seed);
   if (dot<T>(in_sphere, n) > 0.0)
     return in_sphere;
   else

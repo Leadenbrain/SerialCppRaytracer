@@ -44,8 +44,9 @@ class cube : public hit<T> {
   bool is_hit(const ray<T>& r,
               const T& t_min,
               const T& t_max,
-              hit_rec<T>& rec) const override {
-    return sides.is_hit(r, t_min, t_max, rec);
+              hit_rec<T>& rec,
+              unsigned int* seed) const override {
+    return sides.is_hit(r, t_min, t_max, rec, seed);
   }
 
   /**

@@ -50,7 +50,8 @@ class diffuse_light : public material<T> {
   bool scatter(const ray<T>&,
                const hit_rec<T>&,
                color<T>&,
-               ray<T>&) const override {
+               ray<T>&,
+               unsigned int*) const override {
     return false;
   }
 

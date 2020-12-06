@@ -33,8 +33,8 @@ class bvh_node : public hit<T> {
    * @param t0 Initial shutter time
    * @param t1 Final shutter time
    */
-  bvh_node(const hit_list<T>& l, const T& t0, const T& t1)
-      : bvh_node(l.objects(), 0, l.size(), t0, t1) {}
+  bvh_node(const hit_list<T>& l, const T& t0, const T& t1, unsigned int* seed)
+      : bvh_node(l.objects(), 0, l.size(), t0, t1, seed) {}
   /**
    * @brief Construct a new bvh node object
    *
@@ -43,7 +43,8 @@ class bvh_node : public hit<T> {
            const size_t&,
            const size_t&,
            const T&,
-           const T&);
+           const T&,
+           unsigned int*);
 
   /**
    * @brief Whether we are in the bounding box
@@ -70,12 +71,13 @@ class bvh_node : public hit<T> {
   bool is_hit(const ray<T>& r,
               const T& t_min,
               const T& t_max,
-              hit_rec<T>& rec) const override {
-    if (!box.is_hit(r, t_min, t_max))
+              hit_rec<T>& rec,
+              unsigned int* seed) const override {
+    if (!box.is_hit(r, t_min, t_max, seed))
       return false;
 
-    bool hit_l = left_->is_hit(r, t_min, t_max, rec);
-    bool hit_r = right_->is_hit(r, t_min, hit_l ? rec.t : t_max, rec);
+    bool hit_l = left_->is_hit(r, t_min, t_max, rec, seed);
+    bool hit_r = right_->is_hit(r, t_min, hit_l ? rec.t : t_max, rec, seed);
 
     return hit_l || hit_r;
   }
@@ -183,11 +185,12 @@ bvh_node<T>::bvh_node(const std::vector<std::shared_ptr<hit<T>>>& src,
                       const size_t& start,
                       const size_t& end,
                       const T& t0,
-                      const T& t1) {
+                      const T& t1,
+                      unsigned int* seed) {
   // Didn't want to put this code here but had errors implementing below
   std::vector<std::shared_ptr<hit<T>>> obj = src;
 
-  int axis = random_int(0, 2);
+  int axis = random_int(0, 2, seed);
 
   auto comparator =
       (axis == 0) ? x_comp<T> : (axis == 1) ? y_comp<T> : z_comp<T>;
@@ -207,8 +210,8 @@ bvh_node<T>::bvh_node(const std::vector<std::shared_ptr<hit<T>>>& src,
     std::sort(obj.begin() + start, obj.begin() + end, comparator);
 
     size_t mid = start + obj_len / 2;
-    left_ = std::make_shared<bvh_node<T>>(obj, start, mid, t0, t1);
-    right_ = std::make_shared<bvh_node<T>>(obj, mid, end, t0, t1);
+    left_ = std::make_shared<bvh_node<T>>(obj, start, mid, t0, t1, seed);
+    right_ = std::make_shared<bvh_node<T>>(obj, mid, end, t0, t1, seed);
   }
 
   BB<T> bL, bR;

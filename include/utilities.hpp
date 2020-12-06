@@ -105,11 +105,25 @@ inline T my_clamp(const T& x, const T& min, const T& max) {
  *
  * @return double Random double between 0 and 1
  */
-inline double random_double() {
+inline double random_double(unsigned int* seed) {
   // Returns a random real in [0,1).
-  return std::rand() / (RAND_MAX + 1.0);
+  return rand_r(seed) / (RAND_MAX + 1.0);
 }
 
+// inline double random_double() {
+//   // Returns a random real in [0,1).
+//   return std::rand() / (RAND_MAX + 1.0);
+// }
+
+// inline double random_double(const double& min, const double& max) {
+//   // Returns a random real in [min,max).
+//   return min + (max - min) * random_double();
+// }
+
+// inline int random_int(int min, int max) {
+//   // Returns a random integer in [min,max].
+//   return static_cast<int>(random_double(min, max + 1));
+// }
 /**
  * @brief Returns a random number between two values
  *
@@ -117,9 +131,11 @@ inline double random_double() {
  * @param max Upper bound for random number
  * @return double Random number between two values
  */
-inline double random_double(const double& min, const double& max) {
+inline double random_double(const double& min,
+                            const double& max,
+                            unsigned int* seed) {
   // Returns a random real in [min,max).
-  return min + (max - min) * random_double();
+  return min + (max - min) * random_double(seed);
 }
 
 /**
@@ -129,9 +145,9 @@ inline double random_double(const double& min, const double& max) {
  * @param max Upper bound for random number
  * @return int Random int between two values
  */
-inline int random_int(int min, int max) {
+inline int random_int(int min, int max, unsigned int* seed) {
   // Returns a random integer in [min,max].
-  return static_cast<int>(random_double(min, max + 1));
+  return static_cast<int>(random_double(min, max + 1, seed));
 }
 
 /**

@@ -74,7 +74,8 @@ template <typename T>
 color<T> ray_color(const ray<T>& r,
                    const color<T>& bg,
                    const hit<T>& world,
-                   int depth) {
+                   int depth,
+                   unsigned int* seed) {
   hit_rec<T> rec;
 
   // Limit of bouncing; stop gathering light
@@ -82,7 +83,7 @@ color<T> ray_color(const ray<T>& r,
     return color<T>(0, 0, 0);
 
   // Return the bg when we dont hit
-  if (!world.is_hit(r, 0.001, inf<T>, rec))
+  if (!world.is_hit(r, 0.001, inf<T>, rec, seed))
     return bg;
 
   color<T> c;
@@ -90,8 +91,8 @@ color<T> ray_color(const ray<T>& r,
   color<T> light = rec.mat->emit(rec.u, rec.v, rec.p);
 
   // If we hit a light source
-  if (!rec.mat->scatter(r, rec, c, scat))
+  if (!rec.mat->scatter(r, rec, c, scat, seed))
     return light;
 
-  return light + c * ray_color<T>(scat, bg, world, depth - 1);
+  return light + c * ray_color<T>(scat, bg, world, depth - 1, seed);
 }

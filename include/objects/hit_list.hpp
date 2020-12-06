@@ -73,7 +73,11 @@ class hit_list : public hit<T> {
    * @return true Returns true if object is hit
    * @return false Returns true if objects is hit
    */
-  bool is_hit(const ray<T>&, const T&, const T&, hit_rec<T>&) const override;
+  bool is_hit(const ray<T>&,
+              const T&,
+              const T&,
+              hit_rec<T>&,
+              unsigned int*) const override;
 
   /**
    * @brief Whether we are in the bounding box
@@ -124,14 +128,15 @@ template <typename T>
 bool hit_list<T>::is_hit(const ray<T>& r,
                          const T& t_min,
                          const T& t_max,
-                         hit_rec<T>& rec) const {
+                         hit_rec<T>& rec,
+                         unsigned int* seed) const {
   hit_rec<T> temp;
   bool hit_ = false;
   T best_guess = t_max;
 
   // Go through our obj list, see if they hit
   for (const std::shared_ptr<hit<T>>& obj : obj_list) {
-    if (obj->is_hit(r, t_min, best_guess, temp)) {
+    if (obj->is_hit(r, t_min, best_guess, temp, seed)) {
       hit_ = true;
       best_guess = temp.t;
       rec = temp;

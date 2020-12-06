@@ -45,11 +45,12 @@ class metal : public material<T> {
   bool scatter(const ray<T>& r,
                const hit_rec<T>& rec,
                color<T>& att,
-               ray<T>& scat) const override {
+               ray<T>& scat,
+               unsigned int* seed) const override {
     // Reflect the ray around normal
     vec3<T> ref = reflect<T>(unit_v<T>(r.direction()), rec.n);
     // Add a fuzz-factor to our metal
-    scat = ray<T>(rec.p, ref + fuzz_ * random_sphere<T>()), r.time();
+    scat = ray<T>(rec.p, ref + fuzz_ * random_sphere<T>(seed)), r.time();
     att = metal_col;
     return true;
   }

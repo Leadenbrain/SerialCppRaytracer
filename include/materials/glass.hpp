@@ -43,7 +43,8 @@ class glass : public material<T> {
   bool scatter(const ray<T>& r,
                const hit_rec<T>& rec,
                color<T>& att,
-               ray<T>& scat) const override {
+               ray<T>& scat,
+               unsigned int* seed) const override {
     // Get the effective eta
     T refr_rat = rec.front ? (1.0 / eta_) : eta_;
 
@@ -58,7 +59,7 @@ class glass : public material<T> {
     vec3<T> direction;
 
     // If internal reflect, else refract
-    if (refl || (schlick(cos_t, refr_rat) > random_double()))
+    if (refl || (schlick(cos_t, refr_rat) > random_double(seed)))
       direction = reflect<T>(unit_d, rec.n);
     else
       direction = refract<T>(unit_d, rec.n, refr_rat);

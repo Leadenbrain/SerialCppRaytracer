@@ -47,8 +47,9 @@ class isotropic : public material<T> {
   bool scatter(const ray<T>& r,
                const hit_rec<T>& rec,
                color<T>& att,
-               ray<T>& scat) const override {
-    scat = ray<T>(rec.p, random_sphere<T>(), r.time());
+               ray<T>& scat,
+               unsigned int* seed) const override {
+    scat = ray<T>(rec.p, random_sphere<T>(seed), r.time());
     att = c_->val(rec.u, rec.v, rec.p);
     return true;
   }

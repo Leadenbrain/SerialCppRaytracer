@@ -75,12 +75,12 @@ class camera {
    * @param t v value of pixel
    * @return ray<T> Ray at (u,v)
    */
-  ray<T> getRay(const T& s, const T& t) const {
-    vec3<T> rd = r_ * random_disk_hat<T>();
+  ray<T> getRay(const T& s, const T& t, unsigned int* seed) const {
+    vec3<T> rd = r_ * random_disk_hat<T>(seed);
     vec3<T> off = u * rd.getX() + v * rd.getY();
 
     return ray<T>(o_ + off, llc_ + s * hor_ + t * ver_ - o_ - off,
-                  random_double(t0_, t1_));
+                  random_double(t0_, t1_, seed));
     // return ray<T>(o_, llc_ + s * hor_ + t * ver_ - o_);
   }
 

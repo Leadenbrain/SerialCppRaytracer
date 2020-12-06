@@ -46,7 +46,8 @@ class y_rotation : public hit<T> {
   bool is_hit(const ray<T>& r,
               const T& t_min,
               const T& t_max,
-              hit_rec<T>& out) const override;
+              hit_rec<T>& out,
+              unsigned int*) const override;
 
   /**
    * @brief Returns whether we are in the bounding box
@@ -140,7 +141,8 @@ template <typename T>
 bool y_rotation<T>::is_hit(const ray<T>& r,
                            const T& t_min,
                            const T& t_max,
-                           hit_rec<T>& rec) const {
+                           hit_rec<T>& rec,
+                           unsigned int*) const {
   point3<T> o = r.origin();
   vec3<T> d = r.direction();
 

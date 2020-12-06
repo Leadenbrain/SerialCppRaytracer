@@ -52,7 +52,11 @@ class xy_rectangle : public hit<T> {
    * @return true True if the plane is hit
    * @return false False if the plane is not hit
    */
-  bool is_hit(const ray<T>&, const T&, const T&, hit_rec<T>&) const override;
+  bool is_hit(const ray<T>&,
+              const T&,
+              const T&,
+              hit_rec<T>&,
+              unsigned int*) const override;
 
   /**
    * @brief Returns whether we are in the bounding box
@@ -105,7 +109,8 @@ template <typename T>
 bool xy_rectangle<T>::is_hit(const ray<T>& r,
                              const T& t_min,
                              const T& t_max,
-                             hit_rec<T>& rec) const {
+                             hit_rec<T>& rec,
+                             unsigned int*) const {
   T t = (k_ - r.origin().getZ()) / r.direction().getZ();
   if (t < t_min || t > t_max)
     return false;
@@ -163,7 +168,11 @@ class xz_rectangle : public hit<T> {
    * @return true True if the plane is hit
    * @return false False if the plane is not hit
    */
-  bool is_hit(const ray<T>&, const T&, const T&, hit_rec<T>&) const override;
+  bool is_hit(const ray<T>&,
+              const T&,
+              const T&,
+              hit_rec<T>&,
+              unsigned int*) const override;
 
   /**
    * @brief Returns whether we are in the bounding box
@@ -216,7 +225,8 @@ template <typename T>
 bool xz_rectangle<T>::is_hit(const ray<T>& r,
                              const T& t_min,
                              const T& t_max,
-                             hit_rec<T>& rec) const {
+                             hit_rec<T>& rec,
+                             unsigned int*) const {
   T t = (k_ - r.origin().getY()) / r.direction().getY();
   if (t < t_min || t > t_max)
     return false;
@@ -274,7 +284,11 @@ class yz_rectangle : public hit<T> {
    * @return true True if the plane is hit
    * @return false False if the plane is not hit
    */
-  bool is_hit(const ray<T>&, const T&, const T&, hit_rec<T>&) const override;
+  bool is_hit(const ray<T>&,
+              const T&,
+              const T&,
+              hit_rec<T>&,
+              unsigned int*) const override;
 
   /**
    * @brief Returns whether we are in the bounding box
@@ -327,7 +341,8 @@ template <typename T>
 bool yz_rectangle<T>::is_hit(const ray<T>& r,
                              const T& t_min,
                              const T& t_max,
-                             hit_rec<T>& rec) const {
+                             hit_rec<T>& rec,
+                             unsigned int*) const {
   T t = (k_ - r.origin().getX()) / r.direction().getX();
   if (t < t_min || t > t_max)
     return false;

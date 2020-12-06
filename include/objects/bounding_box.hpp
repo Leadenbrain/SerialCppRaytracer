@@ -56,7 +56,10 @@ class BB {
    * @return true True if object is hit
    * @return false False if object is not hit
    */
-  bool is_hit(const ray<T>& r, const T& t_min, const T& t_max) const {
+  bool is_hit(const ray<T>& r,
+              const T& t_min,
+              const T& t_max,
+              unsigned int*) const {
     T ti = t_min;
     T tf = t_max;
     for (int i = 0; i < 3; i++) {

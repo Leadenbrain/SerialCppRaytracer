@@ -56,7 +56,11 @@ class iso_fog : public hit<T> {
    * @return true True if the ray hits the fog
    * @return false False if the ray does not hit the fog
    */
-  bool is_hit(const ray<T>&, const T&, const T&, hit_rec<T>&) const override;
+  bool is_hit(const ray<T>&,
+              const T&,
+              const T&,
+              hit_rec<T>&,
+              unsigned int*) const override;
 
   /**
    * @brief Returns whether we are inside the bounding box of the fog
@@ -104,17 +108,18 @@ template <typename T>
 bool iso_fog<T>::is_hit(const ray<T>& r,
                         const T& t_min,
                         const T& t_max,
-                        hit_rec<T>& rec) const {
+                        hit_rec<T>& rec,
+                        unsigned int* seed) const {
   hit_rec<T> rec0, rec1;
 
   // if not hitting bounding box through passing
-  if (!bound_->is_hit(r, -inf<T>, inf<T>, rec0))
+  if (!bound_->is_hit(r, -inf<T>, inf<T>, rec0, seed))
     return false;
 
   // realizing now I hard code this 0.0001 acne factor a lot
   // FIXME: look back through code and replace acne with definition
   // if not hitting bound as we travel through
-  if (!bound_->is_hit(r, rec0.t + ACNE, inf<T>, rec1))
+  if (!bound_->is_hit(r, rec0.t + ACNE, inf<T>, rec1, seed))
     return false;
 
   // set min and max if over calcing
@@ -131,7 +136,7 @@ bool iso_fog<T>::is_hit(const ray<T>& r,
 
   const T r_len = r.direction().norm();
   const T d_bound = (rec1.t - rec0.t) * r_len;
-  const T dist = rho_ * std::log(random_double());
+  const T dist = rho_ * std::log(random_double(seed));
 
   // if scatter puts us outside
   if (dist > d_bound)

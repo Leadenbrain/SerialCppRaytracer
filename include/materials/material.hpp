@@ -33,7 +33,8 @@ class material {
   virtual bool scatter(const ray<T>&,
                        const hit_rec<T>&,
                        color<T>&,
-                       ray<T>&) const = 0;
+                       ray<T>&,
+                       unsigned int*) const = 0;
 
   // Function for emission behaviour of light
   /**

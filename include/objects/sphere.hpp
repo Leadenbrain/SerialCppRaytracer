@@ -57,7 +57,11 @@ class sphere : public hit<T> {
    * @return true True if the sphere is hit
    * @return false False if the sphere is not hit
    */
-  bool is_hit(const ray<T>&, const T&, const T&, hit_rec<T>&) const override;
+  bool is_hit(const ray<T>&,
+              const T&,
+              const T&,
+              hit_rec<T>&,
+              unsigned int*) const override;
 
   /**
    * @brief Returns whether we are in the bounding box
@@ -119,7 +123,8 @@ template <typename T>
 bool sphere<T>::is_hit(const ray<T>& r,
                        const T& t_min,
                        const T& t_max,
-                       hit_rec<T>& rec) const {
+                       hit_rec<T>& rec,
+                       unsigned int*) const {
   // Ray from origin to center of sphere
   vec3<T> oc = r.origin() - c_;
 
