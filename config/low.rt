@@ -3,13 +3,13 @@
 aspect=1.0
 width=300
 ns=200
-max_depth=50
+max_depth=40
 bg=,0,0,0
 # WORLD PARAMETERS
 #Scene=5
 # CAMERA PARAMETERS
-from=,278,273,-800
-to=,278,273,1
+from=,478,278,-600
+to=,278,278,0
 vup=,0,1,0
 vof=40
 focus=1000

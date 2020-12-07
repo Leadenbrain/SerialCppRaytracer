@@ -1,7 +1,7 @@
 *.out
-.png
 *.ppm
 .vscode/
 doc/*
 build/*
 *.zip
+omp.png
