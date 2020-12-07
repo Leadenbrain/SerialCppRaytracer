@@ -2,6 +2,6 @@
 .png
 *.ppm
 .vscode/
-doc/latex/*
+doc/*
 build/*
 *.zip

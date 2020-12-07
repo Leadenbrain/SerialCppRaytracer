@@ -67,10 +67,7 @@ int main(int argc, char* argv[]) {
   // Camera
   point3<datatype> from(vec_opts["from"]);
   point3<datatype> to(vec_opts["to"]);
-  // point3<datatype> from(2.78, 2.78, -8.00);
-  // point3<datatype> to(2.78, 2.78, 1);
   vec3<datatype> vup(vec_opts["vup"]);
-  // datatype focus = (from - to).norm();
   const datatype vof{opts["vof"]};
   const datatype focus{opts["focus"]};
   const datatype ap{opts["ap"]};
@@ -79,20 +76,14 @@ int main(int argc, char* argv[]) {
   //   .ppm file size widthxheight
   std::cout << "P3\n" << width << " " << height << "\n255\n";
 
-  // TODO: This whole thing can be subdivided for parallelism
-  // also TODO: probably want this in a function
-  //            -> assign parallelism from this func?
   // Let's time this, it's not going to be pretty
   timer t_render;
 
   color<double>* pixels = new color<double>[width * height];
 #pragma omp parallel for
   for (int i = 0; i < width * height; i++) {
-    unsigned int my_seed = 123;
+    unsigned int my_seed = omp_get_thread_num();
     color<double> pix = color<double>(0, 0, 0);
-    // std::cerr << "\rLines remaining: " << height - ((i - (i % width)) /
-    // width)
-    //           << " " << std::flush;
     for (int s = 0; s < ns; ++s) {
       int x, y;
       x = i % width;
@@ -104,11 +95,9 @@ int main(int argc, char* argv[]) {
           static_cast<datatype>(y + (rand_r(&my_seed) / (RAND_MAX + 1.0))) /
           (height - 1);
       ray<datatype> r = cam.getRay(u, v, &numb);
-      pix += ray_color(r, bg, world, max_depth,
-                       &numb);  // color<double>(0.01, 0.08, 0.01);
+      pix += ray_color(r, bg, world, max_depth, &numb);
     }
     pixels[i] = pix;
-    // printf("HERE %d\n", i);
   }
 
   for (int j = height - 1; j >= 0; j--) {
