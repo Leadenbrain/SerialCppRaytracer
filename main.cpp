@@ -20,9 +20,11 @@
 #include "render/camera.hpp"
 #include "render/color.hpp"
 
-#include "scenes/cornell_box.hpp"
-#include "scenes/light_scene.hpp"
-#include "scenes/random_scene.hpp"
+// #include "scenes/cornell_box.hpp"
+// #include "scenes/light_scene.hpp"
+// #include "scenes/random_scene.hpp"
+
+#include "scenes/mesh_scene.hpp"
 
 /**
  * @brief Main function to perform scene generation and rendering
@@ -54,7 +56,7 @@ int main(int argc, char* argv[]) {
 
   // World
   timer t_scene;
-  hit_list<datatype> world = fog_cornell_box();
+  hit_list<datatype> world = mesh_scene();
   t_scene.end();
   double t_end = t_scene.seconds();
   if (t_end > 1.0)

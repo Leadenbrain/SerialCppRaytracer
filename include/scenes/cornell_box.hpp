@@ -17,9 +17,11 @@
 #include "objects/bvh.hpp"
 #include "objects/cube.hpp"
 #include "objects/iso_fog.hpp"
+#include "objects/mesh.hpp"
 #include "objects/moving_sphere.hpp"
 #include "objects/sphere.hpp"
 #include "objects/translation.hpp"
+#include "objects/triangle.hpp"
 #include "objects/y_rotation.hpp"
 #include "textures/checker.hpp"
 
@@ -116,6 +118,28 @@ hit_list<datatype> fog_cornell_box() {
 
   objects.add(
       std::make_shared<iso_fog<datatype>>(b2, 0.01, color<datatype>(1, 0, 1)));
+
+  return hit_list<datatype>(
+      std::make_shared<bvh_node<datatype>>(objects, 0.0, 1.0));
+}
+
+/**
+ * @brief Construct a standard cornell box, but with fog cubes.
+ *
+ * @return hit_list<datatype> Hit list containing our foggy Cornell Box
+ */
+hit_list<datatype> triangle_cornell_box() {
+  hit_list<datatype> objects = empty_cornell_box();
+
+  point3<datatype> p0, p1, p2;
+  p0 = point3<datatype>(556 / 3.0, 548.8 / 3.0, 559.2 / 2.0);
+  p1 = point3<datatype>(556 / 3.0 * 2.0, 548.8 / 3.0, 559.2 / 3.0 * 2.0);
+  p2 = point3<datatype>(556 / 2.0, 548.8 / 3.0 * 2.0, 559.2 / 3.0 * 2.0);
+  auto metal2 =
+      std::make_shared<metal<datatype>>(color<datatype>(0.1, 0.4, 0.8), 1.0);
+  objects.add(
+      std::make_shared<triangle<datatype>>(p0, p1, p2, 559.2 / 3.0, metal2));
+  //   std::make_shared<diffuse<datatype>>(mat_checker)));
 
   return hit_list<datatype>(
       std::make_shared<bvh_node<datatype>>(objects, 0.0, 1.0));
